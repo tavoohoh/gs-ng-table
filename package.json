@@ -1,13 +1,18 @@
 {
   "name": "gs-tables-core",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod --aot",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "lib:build": "ng-packagr -p projects/gs-tables/ng-package.json",
+    "lib:init-repo": "cd ./dist/gs-tables/ && git init && git remote add origin git@bitbucket.org:tavoohoh/rpp-ngtables-lib.git",
+    "lib:commit": "cd ./dist/gs-tables/ && git add . && git commit -m '1.0.0'",
+    "lib:push": "cd ./dist/gs-tables/ && git push -f --set-upstream origin master",
+    "lib:publish": "npm run lib:build && npm run lib:init-repo && npm run lib:commit && npm run lib:push"
   },
   "private": true,
   "dependencies": {
@@ -21,6 +26,7 @@
     "@angular/router": "~8.2.14",
     "@ngx-translate/core": "^12.1.1",
     "@ngx-translate/http-loader": "^4.0.0",
+    "gs-tables": "file:dist/gs-tables",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"

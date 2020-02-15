@@ -5,7 +5,8 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { AppComponent } from './app.component';
-import { GsTablesModule, GTableStyles } from 'projects/gs-tables/src/public-api';
+import { GTableStyles, GsTablesModule } from 'gs-tables';
+// import { GsTablesModule, GTableStyles } from 'projects/gs-tables/src/public-api';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
