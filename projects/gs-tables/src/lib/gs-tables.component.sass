@@ -1,0 +1,34 @@
+@import ./gs-tables.styles
+
+$repeat: repeat(auto-fit, minmax(180px, 1fr))
+
+.gs-table
+  padding: var(--gt-padding, $gt-padding)
+
+  .gs-table-header,
+  .gs-table-row
+    display: grid
+    grid-template-columns: var(--repeat, $repeat)
+  
+  .gs-table-header .gs-table-header_text,
+  .gs-table-row .gs-table-row_text
+    padding: var(--gt-padding, $gt-padding)
+    display: grid
+    align-content: center
+
+  .gs-table-header
+    border-bottom: 1px solid var(--gt-secondary-color, $gt-secondary-color)
+    .gs-table-header_text
+      font-size: 90%
+      font-weight: bold
+
+
+  .gs-table-content
+    min-height: 152px
+    max-height: 228px
+    overflow-y: auto
+
+    .gs-table-row
+      border-bottom: 1px solid var(--gt-secondary-color, $gt-secondary-color)
+      &:nth-of-type(odd)
+        background-color: var(--gt-secondary-color, $gt-secondary-color)

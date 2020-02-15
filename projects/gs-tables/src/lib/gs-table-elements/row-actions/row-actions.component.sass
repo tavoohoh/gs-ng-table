@@ -1,0 +1,51 @@
+@import ../../gs-tables.styles
+
+.button
+  display: inherit
+  font-size: 70%
+  font-weight: bold
+  padding: var(--gt-button-padding, $gt-button-padding)
+  margin: 7px auto
+
+  svg
+    fill: var(--gt-font-color, $gt-font-color)
+    width: 8px
+    height: 8px
+    margin-left: 3px
+
+.action 
+  position: relative
+
+.options
+  position: absolute
+  font-size: 80%
+  z-index: 1000
+  padding: 4px
+  background: var(--gt-white-color, $gt-white-color)
+  box-shadow: $shadowSoft
+  border-radius: var(--gt-button-border-radius, $gt-button-border-radius)
+  width: max-content
+  line-height: 1
+
+  span
+    @include transition()
+    display: inline-block
+    width: 160px
+    padding: 6px
+    line-height: 1
+    cursor: pointer
+    color: var(--gt-font-color, $gt-font-color)
+    text-overflow: ellipsis
+    overflow: hidden
+    white-space: nowrap
+    
+    &:hover
+      opacity: $opacity
+
+.options.dropdown
+  width: 100px
+  top: 28px
+  right: calc( 40% - 10px )
+
+  span
+    width: 100%

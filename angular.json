@@ -124,6 +124,41 @@
           }
         }
       }
+    },
+    "gs-tables": {
+      "projectType": "library",
+      "root": "projects/gs-tables",
+      "sourceRoot": "projects/gs-tables/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/gs-tables/tsconfig.lib.json",
+            "project": "projects/gs-tables/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/gs-tables/src/test.ts",
+            "tsConfig": "projects/gs-tables/tsconfig.spec.json",
+            "karmaConfig": "projects/gs-tables/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/gs-tables/tsconfig.lib.json",
+              "projects/gs-tables/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }},
   "defaultProject": "gs-tables-core"
 }

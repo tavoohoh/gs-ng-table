@@ -17,7 +17,15 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "gs-tables": [
+        "dist/gs-tables"
+      ],
+      "gs-tables/*": [
+        "dist/gs-tables/*"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

@@ -1,0 +1,29 @@
+{
+  "name": "gs-tables",
+  "version": "0.1.0",
+  "description": "Simple and easy to use Angular 8 table",
+  "keywords": [
+    "angular",
+    "angular table",
+    "dynamic table",
+    "rxjs"
+  ],
+  "author": {
+    "name": "Gustavo Santamaria",
+    "email": "tavo_bajares@live.com",
+    "url": "https://github.com/tavoohoh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tavoohoh/gs-table"
+  },
+  "bugs": {
+    "url" : "https://github.com/tavoohoh/gs-table/issues",
+    "email" : "tavo_bajares@live.com"
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/common": "^8.2.14",
+    "@angular/core": "^8.2.14"
+  }
+}

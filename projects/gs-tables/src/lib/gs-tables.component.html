@@ -1,0 +1,51 @@
+<ng-container *ngIf="!noTableData">
+  <!-- GTableStyle: TABLE -->
+  <div class="gs-table" *ngIf="tableStyle === tableStyleType.TABLE">
+    <!-- header -->
+    <div class="gs-table-header" [style.padding-right.px]="tableContentPadding" #tableHeaderElement>
+      <ng-container *ngFor="let title of tableHeader">
+        <span class="gs-table-header_text">{{ title }}</span>
+      </ng-container>
+      <ng-container *ngIf="tableRowActions && tableRowActions.display">
+        <span class="gs-table-header_text">{{ tableRowActions.text }}</span>
+      </ng-container>
+    </div>
+    
+    <!-- content -->
+    <div class="gs-table-content" *ngIf="tableContent && tableContentKeys">
+      <div #tableContentElement>
+        <div class="gs-table-row" *ngFor="let row of tableContent">
+          <ng-container *ngFor="let key of tableContentKeys">
+            <span class="gs-table-row_text">{{ row[key] }}</span>
+          </ng-container>
+          <ng-container *ngIf="tableRowActions && tableRowActions.display">
+            <gs-table-row-actions
+              [rowAction]="tableRowActions"
+              [rowData]="row"
+              (rowActionEvent)="hdlRowAction($event)">
+            </gs-table-row-actions>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GTableStyle: SINGLE -->
+  <div class="gs-table-single" *ngIf="tableStyle === tableStyleType.SINGLE">
+    <!-- content -->
+    <div class="gs-table-content" *ngIf="tableContent && tableContentKeys">
+      <div class="gs-table-row" *ngFor="let row of tableContent">
+        <ng-container *ngFor="let key of tableContentKeys">
+          <span class="gs-table-row_text">{{ row[key] }}</span>
+        </ng-container>
+        <ng-container *ngIf="tableRowActions && tableRowActions.display">
+          <gs-table-row-actions
+            [rowAction]="tableRowActions"
+            [rowData]="row"
+            (rowActionEvent)="hdlRowAction($event)">
+          </gs-table-row-actions>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</ng-container>
