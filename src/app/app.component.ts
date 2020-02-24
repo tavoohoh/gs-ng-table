@@ -16,7 +16,7 @@ export class AppComponent {
       'Age'
     ],
     options: {
-      style: GTableStyle.TABLE,
+      style: GTableStyle.SINGLE,
       rowActions: {
         display: true,
         text: 'Actions',

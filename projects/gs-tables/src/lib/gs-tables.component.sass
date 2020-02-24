@@ -22,7 +22,6 @@ $repeat: repeat(auto-fit, minmax(180px, 1fr))
       font-size: 90%
       font-weight: bold
 
-
   .gs-table-content
     min-height: 152px
     max-height: 228px
@@ -32,3 +31,24 @@ $repeat: repeat(auto-fit, minmax(180px, 1fr))
       border-bottom: 1px solid var(--gt-secondary-color, $gt-secondary-color)
       &:nth-of-type(odd)
         background-color: var(--gt-secondary-color, $gt-secondary-color)
+
+.gs-table-single
+  padding: var(--gt-padding, $gt-padding)
+
+  .gs-table-content
+    min-height: 152px
+    max-height: 328px
+    overflow-y: auto
+
+    .gs-table-row    
+      display: grid
+      grid-template-columns: repeat(2, 1fr) max-content
+      gap: 1rem
+      border-bottom: 1px solid var(--gt-secondary-color, $gt-secondary-color)
+      padding: var(--gt-padding, $gt-padding)
+      
+      &:nth-of-type(odd)
+        background-color: var(--gt-secondary-color, $gt-secondary-color)
+    
+      .gs-table-row_text
+        align-self: center

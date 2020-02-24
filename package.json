@@ -1,6 +1,6 @@
 {
   "name": "gs-tables-core",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -10,7 +10,7 @@
     "e2e": "ng e2e",
     "lib:build": "ng-packagr -p projects/gs-tables/ng-package.json",
     "lib:init-repo": "cd ./dist/gs-tables/ && git init && git remote add origin git@bitbucket.org:tavoohoh/rpp-ngtables-lib.git",
-    "lib:commit": "cd ./dist/gs-tables/ && git add . && git commit -m '1.0.0'",
+    "lib:commit": "cd ./dist/gs-tables/ && git add . && git commit -m '1.1.0'",
     "lib:push": "cd ./dist/gs-tables/ && git push -f --set-upstream origin master",
     "lib:publish": "npm run lib:build && npm run lib:init-repo && npm run lib:commit && npm run lib:push"
   },
