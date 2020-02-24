@@ -14,7 +14,7 @@ export class GsTableRowActionsComponent {
 
   @Input() public rowAction: GTableRowAction;
   @Input() public rowData: {};
-  @Output() public rowActionEvent = new EventEmitter<GTableAction>();
+  @Output() private rowActionEvent = new EventEmitter<GTableAction>();
 
   @HostListener('document:click', ['$event'])
   clickout(event) {

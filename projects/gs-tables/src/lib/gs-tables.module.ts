@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { GsTablesComponent } from './gs-tables.component';
 import { GsTableRowActionsComponent } from './gs-table-elements/row-actions/row-actions.component';
-import { GTableStyles } from './gs-tables.widgets';
+import { GStyles } from './gs-tables.widgets';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,7 @@ import { GTableStyles } from './gs-tables.widgets';
   exports: [GsTablesComponent]
 })
 export class GsTablesModule {
-  public static forRoot(styles?: GTableStyles): ModuleWithProviders {
+  public static forRoot(styles?: GStyles): ModuleWithProviders {
     return {
       ngModule: GsTablesModule,
       providers: [

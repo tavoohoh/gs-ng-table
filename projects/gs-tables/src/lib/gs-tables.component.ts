@@ -1,5 +1,5 @@
-import { Component, Input, OnInit, HostBinding, HostListener, ViewChild, ElementRef, Inject } from '@angular/core';
-import { GTable, GTableRowAction, GTableAction, GTableStyle, GTableStyles } from './gs-tables.widgets';
+import { Component, Input, OnInit, HostBinding, HostListener, ViewChild, ElementRef, Inject, Output, EventEmitter } from '@angular/core';
+import { GTable, GTableRowAction, GTableAction, GTableStyle, GStyles } from './gs-tables.widgets';
 import { GsTablesService } from './gs-tables.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -12,6 +12,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class GsTablesComponent implements OnInit {
   @Input() private tableData: GTable;
+  @Output() private rowActionEvent = new EventEmitter<GTableAction>();
   @ViewChild('tableContentElement', { static: false }) private tableContentElement: ElementRef;
   @ViewChild('tableHeaderElement', { static: false }) private tableHeaderElement: ElementRef;
 
@@ -21,7 +22,7 @@ export class GsTablesComponent implements OnInit {
   public tableContentPadding: number;
   public tableRowActions: GTableRowAction;
   public tableStyle: GTableStyle;
-  private customStyles: GTableStyles;
+  private customStyles: GStyles;
 
   public noTableData: boolean;
   public tableStyleType = GTableStyle;
@@ -79,57 +80,57 @@ export class GsTablesComponent implements OnInit {
       if (this.customStyles.color) {
         variables = variables + `--gt-font-color: ${this.customStyles.color}!important;`;
       }
-      if (this.customStyles.fontSize) {
-        variables = variables + `--gt-font-size: ${this.customStyles.fontSize}!important;`;
+      if (this.customStyles.ui.fontSize) {
+        variables = variables + `--gt-font-size: ${this.customStyles.ui.fontSize}!important;`;
       }
-      if (this.customStyles.primaryColor) {
-        variables = variables + `--gt-primary-color: ${this.customStyles.primaryColor}!important;`;
+      if (this.customStyles.color.primary) {
+        variables = variables + `--gt-primary-color: ${this.customStyles.color.primary}!important;`;
       }
-      if (this.customStyles.secondaryColor) {
-        variables = variables + `--gt-secondary-color: ${this.customStyles.secondaryColor}!important;`;
+      if (this.customStyles.color.secondary) {
+        variables = variables + `--gt-secondary-color: ${this.customStyles.color.secondary}!important;`;
       }
-      if (this.customStyles.neutralColor) {
-        variables = variables + `--gt-neutral-color: ${this.customStyles.neutralColor}!important;`;
+      if (this.customStyles.color.neutral) {
+        variables = variables + `--gt-neutral-color: ${this.customStyles.color.neutral}!important;`;
       }
-      if (this.customStyles.whiteColor) {
-        variables = variables + `--gt-white-color: ${this.customStyles.whiteColor}!important;`;
+      if (this.customStyles.color.white) {
+        variables = variables + `--gt-white-color: ${this.customStyles.color.white}!important;`;
       }
-      if (this.customStyles.padding) {
-        variables = variables + `--gt-padding: ${this.customStyles.padding}!important;`;
+      if (this.customStyles.ui.padding) {
+        variables = variables + `--gt-padding: ${this.customStyles.ui.padding}!important;`;
       }
-      if (this.customStyles.buttom) {
-        if (this.customStyles.buttom.padding) {
-          variables = variables + `--gt-buttom-padding: ${this.customStyles.buttom.padding}!important;`;
+      if (this.customStyles.ui.primaryButton) {
+        if (this.customStyles.ui.primaryButton.padding) {
+          variables = variables + `--gt-button-padding: ${this.customStyles.ui.primaryButton.padding}!important;`;
         }
-        if (this.customStyles.buttom.color) {
-          variables = variables + `--gt-buttom-color: ${this.customStyles.buttom.color}!important;`;
+        if (this.customStyles.ui.primaryButton.color) {
+          variables = variables + `--gt-button-color: ${this.customStyles.ui.primaryButton.color}!important;`;
         }
-        if (this.customStyles.buttom.background) {
-          variables = variables + `--gt-buttom-background: ${this.customStyles.buttom.background}!important;`;
+        if (this.customStyles.ui.primaryButton.background) {
+          variables = variables + `--gt-button-background: ${this.customStyles.ui.primaryButton.background}!important;`;
         }
-        if (this.customStyles.buttom.borderSize) {
-          variables = variables + `--gt-buttom-border-size: ${this.customStyles.buttom.borderSize}!important;`;
+        if (this.customStyles.ui.primaryButton.borderSize) {
+          variables = variables + `--gt-button-border-size: ${this.customStyles.ui.primaryButton.borderSize}!important;`;
         }
-        if (this.customStyles.buttom.borderStyle) {
-          variables = variables + `--gt-buttom-border-style: ${this.customStyles.buttom.borderStyle}!important;`;
+        if (this.customStyles.ui.primaryButton.borderStyle) {
+          variables = variables + `--gt-button-border-style: ${this.customStyles.ui.primaryButton.borderStyle}!important;`;
         }
-        if (this.customStyles.buttom.borderColor) {
-          variables = variables + `--gt-buttom-border-color: ${this.customStyles.buttom.borderColor}!important;`;
+        if (this.customStyles.ui.primaryButton.borderColor) {
+          variables = variables + `--gt-button-border-color: ${this.customStyles.ui.primaryButton.borderColor}!important;`;
         }
-        if (this.customStyles.buttom.borderRadius) {
-          variables = variables + `--gt-buttom-border-radius: ${this.customStyles.buttom.borderRadius}!important;`;
+        if (this.customStyles.ui.primaryButton.borderRadius) {
+          variables = variables + `--gt-button-border-radius: ${this.customStyles.ui.primaryButton.borderRadius}!important;`;
         }
-        if (this.customStyles.buttom.borderTop) {
-          variables = variables + `--gt-buttom-border-top: ${this.customStyles.buttom.borderTop}!important;`;
+        if (this.customStyles.ui.primaryButton.borderTop) {
+          variables = variables + `--gt-button-border-top: ${this.customStyles.ui.primaryButton.borderTop}!important;`;
         }
-        if (this.customStyles.buttom.borderRight) {
-          variables = variables + `--gt-buttom-border-right: ${this.customStyles.buttom.borderRight}!important;`;
+        if (this.customStyles.ui.primaryButton.borderRight) {
+          variables = variables + `--gt-button-border-right: ${this.customStyles.ui.primaryButton.borderRight}!important;`;
         }
-        if (this.customStyles.buttom.borderBottom) {
-          variables = variables + `--gt-buttom-border-bottom: ${this.customStyles.buttom.borderBottom}!important;`;
+        if (this.customStyles.ui.primaryButton.borderBottom) {
+          variables = variables + `--gt-button-border-bottom: ${this.customStyles.ui.primaryButton.borderBottom}!important;`;
         }
-        if (this.customStyles.buttom.borderLeft) {
-          variables = variables + `--gt-buttom-border-left: ${this.customStyles.buttom.borderLeft}!important;`;
+        if (this.customStyles.ui.primaryButton.borderLeft) {
+          variables = variables + `--gt-button-border-left: ${this.customStyles.ui.primaryButton.borderLeft}!important;`;
         }
       }
     }
@@ -152,7 +153,7 @@ export class GsTablesComponent implements OnInit {
   }
 
   public hdlRowAction(action: GTableAction) {
-    console.log(action);
+    this.rowActionEvent.emit(action);
   }
 
   private onInputDataError() {

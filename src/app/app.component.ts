@@ -90,4 +90,8 @@ export class AppComponent {
       },
     ]
   };
+
+  public hdlRowActionEvent(event) {
+    console.log('Event', event);
+  }
 }

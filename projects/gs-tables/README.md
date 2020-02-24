@@ -1,24 +1,60 @@
-# GsTables
+# gs-tables
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.14.
+Simple angular 8 tables library.
 
 ## Code scaffolding
 
-Run `ng generate component component-name --project gs-tables` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project gs-tables`.
-> Note: Don't forget to add `--project gs-tables` or else it will be added to the default project in your `angular.json` file. 
+* [Installation](#installation)
+* [Getting Started](#getting-started)
+* [Usage](#usage)
+  * [Add gs-tables to your code](#add-gs-tables-to-your-code)
+  * [Styling gs-tables](#styling-gs-tables)
+  * [gs-tables row actions](#gs-tables-row-actions)
 
-## Build
+## Installation
+- [set up your SSH key](https://confluence.atlassian.com/bitbucket/set-up-an-ssh-key-728138079.html#SetupanSSHkey-ssh1)
+so `npm` can clone the `rpp-ngforms-lib` repo.
+If you already have your SSH key configured for Bitbucket go to the next step.
 
-Run `ng build gs-tables` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Install the library via NPM
+```sh
+npm install git+ssh://git@bitbucket.org/rappinc/rpp-ngtables-lib.git --save
+```
 
-## Publishing
+## Getting Started
 
-After building your library with `ng build gs-tables`, go to the dist folder `cd dist/gs-tables` and run `npm publish`.
+Add `GsTablesModule` into the imports array of the module that will use `gs-tables`
 
-## Running unit tests
+```ts
+import { GsTablesModule} from 'gs-tables';
 
-Run `ng test gs-tables` to execute the unit tests via [Karma](https://karma-runner.github.io).
+@NgModule({
+  imports: [
+    // ...
+    GsTablesModule
+  ],
+})
+export class AppModule { }
+```
 
-## Further help
+If you would like to use custom styles for the form fields you can pass a `GStyles` object to the module:
+```ts
+import { GsTablesModule} from 'gs-tables';
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+@NgModule({
+  imports: [
+    // ...
+    GsTablesModule.forRoot({
+      color: {
+        font: '#1f2532'
+      },
+      ui: {
+        input: {
+          background: '#cccccc'
+        }
+      }
+    )
+  ],
+})
+export class AppModule { }
+```

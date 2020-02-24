@@ -5,29 +5,34 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { AppComponent } from './app.component';
-import { GTableStyles, GsTablesModule } from 'gs-tables';
-// import { GsTablesModule, GTableStyles } from 'projects/gs-tables/src/public-api';
+// import { GStyles, GsTablesModule } from 'gs-tables';
+import { GsTablesModule, GStyles } from 'projects/gs-tables/src/public-api';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
-const tableStyles: GTableStyles = {
-  color: '#1f2532',
-  fontSize: '1rem',
-  primaryColor: '#f33959',
-  secondaryColor: '#eeeeee',
-  neutralColor: '#757574',
-  whiteColor: null,
-  padding: '.4rem',
-  buttom: {
-    padding: '.3rem',
-    color: '#ffffff',
-    background: '#f33959',
-    borderColor: '#f33959',
-    borderRadius: '24px'
+const gStyles: GStyles = {
+  color: {
+    font: '#1f2532',
+    primary: '#f33959',
+    secondary: '#eeeeee',
+    neutral: '#757574',
+    white: null
+  },
+  ui: {
+    fontSize: '15px',
+    padding: '1rem',
+    primaryButton: {
+      padding: '.6rem',
+      color: '#ffffff',
+      background: '#f33959',
+      borderColor: '#f33959',
+      borderRadius: '24px'
+    }
   }
 };
+
 
 @NgModule({
   declarations: [
@@ -43,7 +48,7 @@ const tableStyles: GTableStyles = {
         deps: [HttpClient]
       }
     }),
-    GsTablesModule.forRoot(tableStyles)
+    GsTablesModule.forRoot(gStyles)
   ],
   providers: [],
   bootstrap: [AppComponent]
