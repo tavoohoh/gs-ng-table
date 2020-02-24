@@ -1,3 +1,7 @@
+/**
+ * A row action element
+ * For example: 'edit', 'delete', etc...
+ */
 export interface GTableAction {
   display: boolean;
   text: string;
@@ -5,12 +9,18 @@ export interface GTableAction {
   row?: {};
 }
 
+/**
+ * An event triggered when clicking an action element
+ */
 export interface GTableRowAction {
   display: boolean;
   text: string;
   actions: Array<GTableAction>;
 }
 
+/**
+ * Input/button styles
+ */
 interface GInputStyle {
   /* Input padding */
   padding?: string;
@@ -93,18 +103,47 @@ export interface GStyles {
   };
 }
 
+/**
+ * Table design
+ */
 export enum GTableStyle {
-  // Display the table with all its columns, a header. Actions are optional.
+  /**
+   * Display the table with all its columns, a header. Actions are optional.
+   */
   TABLE = 'TABLE',
-  // Disply only the first and second column, no header. Actions are optional.
+  /**
+   * Disply only the first and second column, no header. Actions are optional.
+   */
   SINGLE = 'SINGLE'
 }
 
+/**
+ * Table configuration
+ */
 export interface GTable {
+  /**
+   * The table data as an array of objects
+   */
   data: Array<object>;
+  /**
+   * Table header values
+   *
+   * Optional. If not defined the header will use `GTable.data` key names
+   */
   header?: Array<string>;
+  /**
+   * Change the table design or add funcionalities
+   */
   options?: {
+    /**
+     * Set the table desgin
+     *
+     * By Default: `GTableStyle.TABLE`
+     */
     style?: GTableStyle;
+    /**
+     * A dropdown button with actions to trigger events
+     */
     rowActions?: GTableRowAction;
   };
 }
