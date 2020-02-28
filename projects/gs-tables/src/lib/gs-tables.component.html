@@ -28,6 +28,9 @@
         </div>
       </div>
     </div>
+
+    <!-- footer -->
+    <ng-container *ngTemplateOutlet="footer"></ng-container>
   </div>
 
   <!-- GTableStyle: SINGLE -->
@@ -47,5 +50,38 @@
         </ng-container>
       </div>
     </div>
+
+    <!-- footer -->
+    <ng-container *ngTemplateOutlet="footer"></ng-container>
   </div>
 </ng-container>
+
+<ng-template #footer>
+  <div class="gs-table-footer">
+
+    <div class="gs-table-navigation">
+      <span class="gs-table-navigation-left" [class.disabled]="canNavigatePrevious">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"/>
+        </svg>
+      </span>
+
+      <span class="gs-table-navigation-page">
+        {{ (currentPage - 1 > 0) ? (currentPage - 1) : 0 }}
+      </span>
+      <span class="gs-table-navigation-page_current">
+        {{ currentPage }}
+      </span>
+      <span class="gs-table-navigation-page">
+        {{ canNavigateNext ? currentPage + 1 : '' }}
+      </span>
+
+      <span class="gs-table-navigation-right" [class.disabled]="canNavigateNext">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z"/>
+        </svg>
+      </span>
+    </div>
+
+  </div>
+</ng-template>

@@ -3,7 +3,7 @@
 $repeat: repeat(auto-fit, minmax(180px, 1fr))
 
 .gs-table
-  padding: var(--gt-padding, $gt-padding)
+  border: 1px solid var(--gt-neutral-color, $gt-neutral-color)
 
   .gs-table-header,
   .gs-table-row
@@ -17,7 +17,8 @@ $repeat: repeat(auto-fit, minmax(180px, 1fr))
     align-content: center
 
   .gs-table-header
-    border-bottom: 1px solid var(--gt-secondary-color, $gt-secondary-color)
+    border-bottom: 1px solid var(--gt-neutral-color, $gt-neutral-color)
+
     .gs-table-header_text
       font-size: 90%
       font-weight: bold
@@ -28,12 +29,12 @@ $repeat: repeat(auto-fit, minmax(180px, 1fr))
     overflow-y: auto
 
     .gs-table-row
-      border-bottom: 1px solid var(--gt-secondary-color, $gt-secondary-color)
-      &:nth-of-type(odd)
-        background-color: var(--gt-secondary-color, $gt-secondary-color)
+      border-bottom: 1px solid var(--gt-neutral-color, $gt-neutral-color)
+
+      &:last-child
+        border-bottom: none
 
 .gs-table-single
-  padding: var(--gt-padding, $gt-padding)
 
   .gs-table-content
     min-height: 152px
@@ -52,3 +53,49 @@ $repeat: repeat(auto-fit, minmax(180px, 1fr))
     
       .gs-table-row_text
         align-self: center
+
+.gs-table, .gs-table-single
+  position: relative
+  
+  .gs-table-footer
+    display: grid
+    grid-template-columns: auto
+    width: 100%
+    padding: var(--gt-padding, $gt-padding)
+
+    .gs-table-navigation
+      align-self: center
+      display: grid
+      grid-template-columns: 14px repeat(3, 10px) 14px
+      gap: .5rem
+      width: max-content
+      margin: 0 auto
+
+      .gs-table-navigation-left,
+      .gs-table-navigation-right,
+      .gs-table-navigation-page,
+      .gs-table-navigation-page_current
+        align-self: center
+        line-height: 1
+
+      .gs-table-navigation-page,
+      .gs-table-navigation-page_current
+        font-size: 80%
+
+      .gs-table-navigation-page
+        opacity: $opacity
+
+      .gs-table-navigation-page_current
+        font-weight: bold
+
+      .gs-table-navigation-left,
+      .gs-table-navigation-right
+        cursor: pointer
+
+        svg
+          width: 14px
+          fill: var(--gt-button-background, $gt-button-background)
+
+          &:disabled
+            pointer-events: none
+            opacity: $opacity

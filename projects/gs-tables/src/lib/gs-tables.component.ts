@@ -27,6 +27,11 @@ export class GsTablesComponent implements OnInit {
   public noTableData: boolean;
   public tableStyleType = GTableStyle;
 
+  // table pagination
+  public currentPage: number;
+  public canNavigateNext: boolean;
+  public canNavigatePrevious: boolean;
+
   constructor(
     private sanitizer: DomSanitizer,
     private tableService: GsTablesService,
@@ -38,10 +43,16 @@ export class GsTablesComponent implements OnInit {
   ngOnInit() {
     this.tableDataAdapter();
 
+    this.currentPage = 1;
+    this.canNavigateNext = true;
+    this.canNavigatePrevious = false;
+
     setTimeout(() => {
       this.setContentWidth();
     });
   }
+
+  // implements on change
 
   private tableDataAdapter() {
     if (!this.tableData || !this.tableData.data) {

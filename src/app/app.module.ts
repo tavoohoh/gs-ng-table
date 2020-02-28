@@ -5,8 +5,8 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { AppComponent } from './app.component';
-import { GStyles, GsTablesModule } from 'gs-tables';
-// import { GsTablesModule, GStyles } from 'projects/gs-tables/src/public-api';
+// import { GStyles, GsTablesModule } from 'gs-tables';
+import { GsTablesModule, GStyles } from 'projects/gs-tables/src/public-api';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -17,8 +17,8 @@ const gStyles: GStyles = {
     font: '#1f2532',
     primary: '#f33959',
     secondary: '#eeeeee',
-    neutral: '#757574',
-    white: null
+    neutral: '#cccccc',
+    white: '#ffffff'
   },
   ui: {
     fontSize: '15px',
