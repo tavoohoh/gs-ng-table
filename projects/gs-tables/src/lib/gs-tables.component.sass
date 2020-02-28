@@ -4,6 +4,7 @@ $repeat: repeat(auto-fit, minmax(180px, 1fr))
 
 .gs-table
   border: 1px solid var(--gt-neutral-color, $gt-neutral-color)
+  background-color: var(--gt-white-color, $gt-white-color)
 
   .gs-table-header,
   .gs-table-row
@@ -24,9 +25,9 @@ $repeat: repeat(auto-fit, minmax(180px, 1fr))
       font-weight: bold
 
   .gs-table-content
-    min-height: 152px
-    max-height: 228px
-    overflow-y: auto
+    // min-height: 152px
+    // max-height: 300px
+    // overflow-y: auto
 
     .gs-table-row
       border-bottom: 1px solid var(--gt-neutral-color, $gt-neutral-color)
@@ -37,9 +38,9 @@ $repeat: repeat(auto-fit, minmax(180px, 1fr))
 .gs-table-single
 
   .gs-table-content
-    min-height: 152px
-    max-height: 328px
-    overflow-y: auto
+    // min-height: 152px
+    // max-height: 328px
+    // overflow-y: auto
 
     .gs-table-row    
       display: grid
@@ -62,6 +63,7 @@ $repeat: repeat(auto-fit, minmax(180px, 1fr))
     grid-template-columns: auto
     width: 100%
     padding: var(--gt-padding, $gt-padding)
+    border-top: 1px solid var(--gt-neutral-color, $gt-neutral-color)
 
     .gs-table-navigation
       align-self: center
@@ -93,7 +95,7 @@ $repeat: repeat(auto-fit, minmax(180px, 1fr))
         cursor: pointer
 
         svg
-          width: 14px
+          width: 12px
           fill: var(--gt-button-background, $gt-button-background)
 
           &:disabled
