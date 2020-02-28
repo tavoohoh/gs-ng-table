@@ -1,3 +1,5 @@
+<!-- https://material.angular.io/components/table/overview -->
+
 <ng-container *ngIf="!noTableData">
   <!-- GTableStyle: TABLE -->
   <div class="gs-table" *ngIf="tableStyle === tableStyleType.TABLE">
@@ -60,20 +62,16 @@
   <div class="gs-table-footer">
 
     <div class="gs-table-navigation">
+      <!-- element count -->
+      <span class="gs-table-navigation_count">
+        10 of 100
+      </span>
+
+      <!-- navigation controlls -->
       <span class="gs-table-navigation-left" [class.disabled]="canNavigatePrevious">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
           <path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"/>
         </svg>
-      </span>
-
-      <span class="gs-table-navigation-page">
-        {{ (currentPage - 1 > 0) ? (currentPage - 1) : 0 }}
-      </span>
-      <span class="gs-table-navigation-page_current">
-        {{ currentPage }}
-      </span>
-      <span class="gs-table-navigation-page">
-        {{ canNavigateNext ? currentPage + 1 : '' }}
       </span>
 
       <span class="gs-table-navigation-right" [class.disabled]="canNavigateNext">
