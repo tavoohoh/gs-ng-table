@@ -156,7 +156,7 @@ export class GsTablesComponent implements OnChanges {
         variables = variables + `--gs-neutral-color: ${this.customStyles.color.neutral}!important;`;
       }
       if (this.customStyles.color.border) {
-        variables = variables + `--gs-color-border: ${this.customStyles.color.border}!important;`;
+        variables = variables + `--gs-border-color: ${this.customStyles.color.border}!important;`;
       }
       if (this.customStyles.color.white) {
         variables = variables + `--gs-white-color: ${this.customStyles.color.white}!important;`;
