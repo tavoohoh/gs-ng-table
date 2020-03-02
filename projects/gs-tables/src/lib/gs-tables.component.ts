@@ -115,7 +115,7 @@ export class GsTablesComponent implements OnChanges {
     this.tableStyle = this.tableData.options.style || GTableStyle.TABLE;
     this.tableContent = this.tableData.data;
     this.tableRowActions = this.tableData.options.rowActions || null;
-    this.tableContentKeys = this.tableService.objectKeysToArray(this.tableContent);
+    this.tableContentKeys = this.tableData.keyNames ? this.tableData.keyNames : this.tableService.objectKeysToArray(this.tableContent);
 
     if (this.tableStyle === GTableStyle.SINGLE) {
       this.tableContentKeys = [this.tableContentKeys[0], this.tableContentKeys[1]];

@@ -1,5 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { GsTablesComponent } from './gs-tables.component';
 import { GsTableRowActionsComponent } from './gs-table-elements/row-actions/row-actions.component';
@@ -11,7 +13,9 @@ import { GStyles } from './gs-tables.widgets';
     GsTableRowActionsComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    TranslateModule,
+    HttpClientModule
   ],
   exports: [GsTablesComponent]
 })

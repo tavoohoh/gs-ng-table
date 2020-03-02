@@ -138,6 +138,12 @@ export interface GTable {
    */
   header?: Array<string>;
   /**
+   * Key names of the data values
+   *
+   * Optional. If not defined the table will iterate over the keys of its data.
+   */
+  keyNames?: Array<string>;
+  /**
    * Change the table design or add funcionalities
    */
   options?: {

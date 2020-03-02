@@ -20,6 +20,12 @@ export class AppComponent implements OnInit {
         'Email Address',
         'Age'
       ],
+      keyNames: [
+        'firstName',
+        'lastName',
+        'email',
+        'age'
+      ],
       options: {
         style: GTableStyle.TABLE,
         rowActions: {
@@ -49,49 +55,57 @@ export class AppComponent implements OnInit {
           firstName: 'Gustavo',
           lastName: 'Santamaria',
           email: 'tavo@mail.com',
-          age: 27
+          age: 27,
+          id: 'qasd1d'
         },
         {
           firstName: 'Rachel',
           lastName: 'Mata',
           email: 'ray@mail.com',
-          age: 26
+          age: 26,
+          id: 'wasd1d'
         },
         {
           firstName: 'Yuumi',
           lastName: 'Marvel',
           email: 'yuumi@mail.com',
-          age: 1
+          age: 1,
+          id: 'easd1d'
         },
         {
           firstName: 'Nestor',
           lastName: 'Bracho',
           email: 'toto@mail.com',
-          age: 32
+          age: 32,
+          id: 'fasd1d'
         },
         {
           firstName: 'Gustavo',
           lastName: 'Santamaria',
           email: 'tavo@mail.com',
-          age: 27
+          age: 27,
+          id: 'g1asd1d'
         },
         {
           firstName: 'Rachel',
           lastName: 'Mata',
           email: 'ray@mail.com',
-          age: 26
+          age: 26,
+          id: '1d2asd1d'
         },
         {
           firstName: 'Yuumi',
           lastName: 'Marvel',
           email: 'yuumi@mail.com',
-          age: 1
+          age: 1,
+          id: 'd4gasd1d'
         },
         {
           firstName: 'Nestor',
           lastName: 'Bracho',
           email: 'toto@mail.com',
-          age: 32
+          age: 32,
+          id: 'f2fasd1d'
         },
       ]
     };
