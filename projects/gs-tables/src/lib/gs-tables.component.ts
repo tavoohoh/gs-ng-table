@@ -29,6 +29,7 @@ export class GsTablesComponent implements OnInit {
 
   // table pagination
   public currentPage: number;
+  public totalOfPages: number;
   public canNavigateNext: boolean;
   public canNavigatePrevious: boolean;
 
@@ -44,6 +45,7 @@ export class GsTablesComponent implements OnInit {
     this.tableDataAdapter();
 
     this.currentPage = 1;
+    this.totalOfPages = 12;
     this.canNavigateNext = true;
     this.canNavigatePrevious = false;
 
@@ -80,9 +82,9 @@ export class GsTablesComponent implements OnInit {
     // Layout
     if (!this.noTableData && this.tableStyle === GTableStyle.TABLE && this.tableHeader.length) {
       if (this.tableRowActions && this.tableRowActions.display) {
-        variables = variables + `--repeat: repeat(${this.tableHeader.length + 1}, 1fr)!important;`;
+        variables = variables + `--gt-repeat: repeat(${this.tableHeader.length + 1}, 1fr)!important;`;
       } else {
-        variables = variables + `--repeat: repeat(${this.tableHeader.length}, 1fr)!important;`;
+        variables = variables + `--gt-repeat: repeat(${this.tableHeader.length}, 1fr)!important;`;
       }
     }
 

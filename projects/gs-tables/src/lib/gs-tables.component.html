@@ -6,30 +6,28 @@
     <!-- header -->
     <div class="gs-table-header" [style.padding-right.px]="tableContentPadding" #tableHeaderElement>
       <ng-container *ngFor="let title of tableHeader">
-        <span class="gs-table-header_text">{{ title }}</span>
+        <span class="gs-table-header-row">{{ title }}</span>
       </ng-container>
       <ng-container *ngIf="tableRowActions && tableRowActions.display">
-        <span class="gs-table-header_text">{{ tableRowActions.text }}</span>
+        <span class="gs-table-header-row">{{ tableRowActions.text }}</span>
       </ng-container>
     </div>
     
     <!-- content -->
-    <div class="gs-table-content" *ngIf="tableContent && tableContentKeys">
-      <div #tableContentElement>
-        <div class="gs-table-row" *ngFor="let row of tableContent">
-          <ng-container *ngFor="let key of tableContentKeys">
-            <span class="gs-table-row_text">{{ row[key] }}</span>
-          </ng-container>
-          <ng-container *ngIf="tableRowActions && tableRowActions.display">
-            <gs-table-row-actions
-              [rowAction]="tableRowActions"
-              [rowData]="row"
-              (rowActionEvent)="hdlRowAction($event)">
-            </gs-table-row-actions>
-          </ng-container>
-        </div>
+    <ng-container #tableContentElement *ngIf="tableContent && tableContentKeys">
+      <div class="gs-table-row" *ngFor="let row of tableContent">
+        <ng-container *ngFor="let key of tableContentKeys">
+          <span class="gs-table-row_text">{{ row[key] }}</span>
+        </ng-container>
+        <ng-container *ngIf="tableRowActions && tableRowActions.display">
+          <gs-table-row-actions
+            [rowAction]="tableRowActions"
+            [rowData]="row"
+            (rowActionEvent)="hdlRowAction($event)">
+          </gs-table-row-actions>
+        </ng-container>
       </div>
-    </div>
+    </ng-container>
 
     <!-- footer -->
     <ng-container *ngTemplateOutlet="footer"></ng-container>
@@ -61,25 +59,23 @@
 <ng-template #footer>
   <div class="gs-table-footer">
 
-    <div class="gs-table-navigation">
       <!-- element count -->
       <span class="gs-table-navigation_count">
-        10 of 100
+        {{ currentPage }} - {{ totalOfPages }}
       </span>
 
       <!-- navigation controlls -->
-      <span class="gs-table-navigation-left" [class.disabled]="canNavigatePrevious">
+      <button type="button" class="gs-table-navigation-left" [class.disabled]="canNavigatePrevious">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
           <path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"/>
         </svg>
-      </span>
+      </button>
 
-      <span class="gs-table-navigation-right" [class.disabled]="canNavigateNext">
+      <button type="button" class="gs-table-navigation-right" [class.disabled]="canNavigateNext">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
           <path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z"/>
         </svg>
-      </span>
-    </div>
+      </button>
 
   </div>
 </ng-template>

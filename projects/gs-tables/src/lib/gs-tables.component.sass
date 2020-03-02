@@ -1,103 +1,88 @@
 @import ./gs-tables.styles
 
-$repeat: repeat(auto-fit, minmax(180px, 1fr))
+@mixin headerFooterFont()
+  color: var(--gt-font-color, $gt-font-color)
+  fill: var(--gt-font-color, $gt-font-color)
+  font-weight: bold
+  font-size: 80%
+  opacity: 0.6
+  
 
 .gs-table
   border: 1px solid var(--gt-neutral-color, $gt-neutral-color)
   background-color: var(--gt-white-color, $gt-white-color)
 
+  .gs-table-header span
+    text-align: left
+    @include headerFooterFont()
+
   .gs-table-header,
   .gs-table-row
     display: grid
-    grid-template-columns: var(--repeat, $repeat)
-  
-  .gs-table-header .gs-table-header_text,
-  .gs-table-row .gs-table-row_text
-    padding: var(--gt-padding, $gt-padding)
-    display: grid
-    align-content: center
+    grid-template-columns: var(--gt-repeat, repeat(auto-fit, minmax(180px, 1fr)))
 
-  .gs-table-header
+  .gs-table-header,
+  .gs-table-row,
+  .gs-table-footer
+    height: 50px
+
+    *
+      align-self: center
+
+  .gs-table-footer,
+  .gs-table-header,
+  .gs-table-row
+    padding-left: 1rem
+    padding-right: 1rem
     border-bottom: 1px solid var(--gt-neutral-color, $gt-neutral-color)
 
-    .gs-table-header_text
-      font-size: 90%
-      font-weight: bold
-
-  .gs-table-content
-    // min-height: 152px
-    // max-height: 300px
-    // overflow-y: auto
-
-    .gs-table-row
-      border-bottom: 1px solid var(--gt-neutral-color, $gt-neutral-color)
-
-      &:last-child
-        border-bottom: none
-
-.gs-table-single
-
-  .gs-table-content
-    // min-height: 152px
-    // max-height: 328px
-    // overflow-y: auto
-
-    .gs-table-row    
-      display: grid
-      grid-template-columns: repeat(2, 1fr) max-content
-      gap: 1rem
-      border-bottom: 1px solid var(--gt-secondary-color, $gt-secondary-color)
-      padding: var(--gt-padding, $gt-padding)
-      
-      &:nth-of-type(odd)
-        background-color: var(--gt-secondary-color, $gt-secondary-color)
-    
-      .gs-table-row_text
-        align-self: center
-
-.gs-table, .gs-table-single
-  position: relative
-  
   .gs-table-footer
+    border-bottom: none
     display: grid
-    grid-template-columns: auto
-    width: 100%
-    padding: var(--gt-padding, $gt-padding)
-    border-top: 1px solid var(--gt-neutral-color, $gt-neutral-color)
+    gap: 2rem
+    grid-template-columns: max-content auto repeat(2, min-content)
 
-    .gs-table-navigation
+    span
+      @include headerFooterFont()
+
+    .gs-table-navigation_count,
+    .gs-table-navigation-left,
+    .gs-table-navigation-right
       align-self: center
-      display: grid
-      grid-template-columns: 14px repeat(3, 10px) 14px
-      gap: .5rem
-      width: max-content
-      margin: 0 auto
 
-      .gs-table-navigation-left,
-      .gs-table-navigation-right,
-      .gs-table-navigation-page,
-      .gs-table-navigation-page_current
-        align-self: center
-        line-height: 1
+    .gs-table-navigation_count
+      grid-column: 1
+    
+    .gs-table-navigation-left
+      grid-column: 3
 
-      .gs-table-navigation-page,
-      .gs-table-navigation-page_current
-        font-size: 80%
+    .gs-table-navigation-right
+      grid-column: 4
 
-      .gs-table-navigation-page
-        opacity: $opacity
+    .gs-table-navigation-left,
+    .gs-table-navigation-right
+      outline: none
+      background: none
+      padding: 0
+      margin: 0
+      border: none
+      cursor: pointer
 
-      .gs-table-navigation-page_current
-        font-weight: bold
+      svg
+        width: 12px
 
-      .gs-table-navigation-left,
-      .gs-table-navigation-right
-        cursor: pointer
+// .gs-table-single
 
-        svg
-          width: 12px
-          fill: var(--gt-button-background, $gt-button-background)
-
-          &:disabled
-            pointer-events: none
-            opacity: $opacity
+//   .gs-table-content
+//     .gs-table-content-row    
+//       display: grid
+//       grid-template-columns: repeat(2, 1fr) max-content
+//       gap: 1rem
+//       border-bottom: 1px solid var(--gt-secondary-color, $gt-secondary-color)
+//       padding: var(--gt-padding, $gt-padding)
+      
+//       &:nth-of-type(odd)
+//         background-color: var(--gt-secondary-color, $gt-secondary-color)
+    
+//       .gs-table-content-row_text
+//         align-self: center
