@@ -2,7 +2,7 @@
 
 You are welcome to collaborate!
 
-For library implementation please go to [gs-form readme](https://bitbucket.org/rappinc/rpp-ngtables-core/src/compiled).
+For library implementation please go to [gs-tables readme](https://bitbucket.org/rappinc/rpp-ngtables-core/src/compiled).
 
 ## Install:
 ```sh
