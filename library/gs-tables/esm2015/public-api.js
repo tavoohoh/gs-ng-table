@@ -1,0 +1,8 @@
+/*
+ * Public API Surface of gs-tables
+ */
+export * from './lib/gs-tables.service';
+export * from './lib/gs-tables.component';
+export * from './lib/gs-tables.module';
+export * from './lib/gs-tables.widgets';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljLWFwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL2dzLXRhYmxlcy8iLCJzb3VyY2VzIjpbInB1YmxpYy1hcGkudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7O0dBRUc7QUFFSCxjQUFjLHlCQUF5QixDQUFDO0FBQ3hDLGNBQWMsMkJBQTJCLENBQUM7QUFDMUMsY0FBYyx3QkFBd0IsQ0FBQztBQUN2QyxjQUFjLHlCQUF5QixDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiLypcbiAqIFB1YmxpYyBBUEkgU3VyZmFjZSBvZiBncy10YWJsZXNcbiAqL1xuXG5leHBvcnQgKiBmcm9tICcuL2xpYi9ncy10YWJsZXMuc2VydmljZSc7XG5leHBvcnQgKiBmcm9tICcuL2xpYi9ncy10YWJsZXMuY29tcG9uZW50JztcbmV4cG9ydCAqIGZyb20gJy4vbGliL2dzLXRhYmxlcy5tb2R1bGUnO1xuZXhwb3J0ICogZnJvbSAnLi9saWIvZ3MtdGFibGVzLndpZGdldHMnO1xuIl19

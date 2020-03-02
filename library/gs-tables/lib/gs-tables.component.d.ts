@@ -1,0 +1,37 @@
+import { OnChanges, SimpleChanges } from '@angular/core';
+import { GTableRowAction, GTableAction, GTableStyle } from './gs-tables.widgets';
+import { GsTablesService } from './gs-tables.service';
+import { DomSanitizer } from '@angular/platform-browser';
+export declare class GsTablesComponent implements OnChanges {
+    private sanitizer;
+    private tableService;
+    private tableData;
+    currentPage: number;
+    totalOfPages: number;
+    private rowActionEvent;
+    private navigateNext;
+    private navigatePrevious;
+    private tableContentElement;
+    private tableHeaderElement;
+    tableHeader: Array<string>;
+    tableContentKeys: Array<string>;
+    tableContent: Array<object>;
+    tableContentPadding: number;
+    tableRowActions: GTableRowAction;
+    tableStyle: GTableStyle;
+    private customStyles;
+    noTableData: boolean;
+    tableStyleType: typeof GTableStyle;
+    canNavigateNext: boolean;
+    canNavigatePrevious: boolean;
+    constructor(sanitizer: DomSanitizer, tableService: GsTablesService, customStyles: any);
+    ngOnChanges(changes: SimpleChanges): void;
+    private setTableFooter;
+    private tableDataAdapter;
+    readonly valueAsStyle: any;
+    onResize(event: any): void;
+    private setContentWidth;
+    hdlRowAction(action: GTableAction): void;
+    onNavigate(next: boolean): void;
+    private onInputDataError;
+}
