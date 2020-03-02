@@ -19,7 +19,7 @@ If you already have your SSH key configured for Bitbucket go to the next step.
 
 - Install the library via NPM
 ```sh
-npm install git+ssh://git@bitbucket.org/rappinc/rpp-ngtable-lib.git --save
+npm install git+ssh://git@bitbucket.org:rappinc/rpp-ngtables-core.git#compiled --save
 ```
 
 ## Getting Started
