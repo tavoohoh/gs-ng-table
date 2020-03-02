@@ -1,16 +1,15 @@
 @import ./gs-tables.styles
 
 @mixin headerFooterFont()
-  color: var(--gt-font-color, $gt-font-color)
-  fill: var(--gt-font-color, $gt-font-color)
+  color: var(--gs-font-color, $gs-font-color)
+  fill: var(--gs-font-color, $gs-font-color)
   font-weight: bold
   font-size: 80%
   opacity: 0.6
   
-
 .gs-table
-  border: 1px solid var(--gt-neutral-color, $gt-neutral-color)
-  background-color: var(--gt-white-color, $gt-white-color)
+  border: 1px solid var(--gs-border-color, $gs-border-color)
+  background-color: var(--gs-white-color, $gs-white-color)
 
   .gs-table-header span
     text-align: left
@@ -19,7 +18,7 @@
   .gs-table-header,
   .gs-table-row
     display: grid
-    grid-template-columns: var(--gt-repeat, repeat(auto-fit, minmax(180px, 1fr)))
+    grid-template-columns: var(--gs-repeat, repeat(auto-fit, minmax(180px, 1fr)))
 
   .gs-table-header,
   .gs-table-row,
@@ -34,7 +33,7 @@
   .gs-table-row
     padding-left: 1rem
     padding-right: 1rem
-    border-bottom: 1px solid var(--gt-neutral-color, $gt-neutral-color)
+    border-bottom: 1px solid var(--gs-border-color, $gs-border-color)
 
   .gs-table-footer
     border-bottom: none
@@ -78,11 +77,11 @@
 //       display: grid
 //       grid-template-columns: repeat(2, 1fr) max-content
 //       gap: 1rem
-//       border-bottom: 1px solid var(--gt-secondary-color, $gt-secondary-color)
-//       padding: var(--gt-padding, $gt-padding)
+//       border-bottom: 1px solid var(--gs-secondary-color, $gs-secondary-color)
+//       padding: var(--gs-padding, $gs-padding)
       
 //       &:nth-of-type(odd)
-//         background-color: var(--gt-secondary-color, $gt-secondary-color)
+//         background-color: var(--gs-secondary-color, $gs-secondary-color)
     
 //       .gs-table-content-row_text
 //         align-self: center

@@ -71,20 +71,25 @@ export class GsTablesComponent implements OnChanges {
       }
     }
 
-    if (
-      (changes.currentPage || this.currentPage) && (changes.totalOfPages || this.totalOfPages)
-    ) {
+    if (changes.currentPage || this.currentPage) {
       this.currentPage = changes.currentPage ? changes.currentPage.currentValue : this.currentPage;
+    } else {
+      this.currentPage = null;
+    }
+
+    if (changes.totalOfPages || this.totalOfPages) {
       this.totalOfPages = changes.totalOfPages ? changes.totalOfPages.currentValue : this.totalOfPages;
+    } else {
+      this.totalOfPages = null;
+    }
+
+    if (this.currentPage && this.totalOfPages) {
       this.setTableFooter();
-    } else if (changes.currentPage.currentValue || changes.totalOfPages.currentValue) {
+    } else if (this.currentPage || this.totalOfPages) {
       return console.warn(
         'GS Table building warning:' + '\n\n' +
         'If you wish to display current and total of pages please add to your table options `currentPage` and `totalOfPages`'
       );
-    } else {
-      this.currentPage = null;
-      this.totalOfPages = null;
     }
 
     setTimeout(() => {
@@ -127,68 +132,71 @@ export class GsTablesComponent implements OnChanges {
     // Layout
     if (!this.noTableData && this.tableStyle === GTableStyle.TABLE && this.tableHeader.length) {
       if (this.tableRowActions && this.tableRowActions.display) {
-        variables = variables + `--gt-repeat: repeat(${this.tableHeader.length + 1}, 1fr)!important;`;
+        variables = variables + `--gs-repeat: repeat(${this.tableHeader.length + 1}, 1fr)!important;`;
       } else {
-        variables = variables + `--gt-repeat: repeat(${this.tableHeader.length}, 1fr)!important;`;
+        variables = variables + `--gs-repeat: repeat(${this.tableHeader.length}, 1fr)!important;`;
       }
     }
 
     // UI
     if (this.customStyles) {
       if (this.customStyles.color) {
-        variables = variables + `--gt-font-color: ${this.customStyles.color}!important;`;
+        variables = variables + `--gs-font-color: ${this.customStyles.color}!important;`;
       }
       if (this.customStyles.ui.fontSize) {
-        variables = variables + `--gt-font-size: ${this.customStyles.ui.fontSize}!important;`;
+        variables = variables + `--gs-font-size: ${this.customStyles.ui.fontSize}!important;`;
       }
       if (this.customStyles.color.primary) {
-        variables = variables + `--gt-primary-color: ${this.customStyles.color.primary}!important;`;
+        variables = variables + `--gs-primary-color: ${this.customStyles.color.primary}!important;`;
       }
       if (this.customStyles.color.secondary) {
-        variables = variables + `--gt-secondary-color: ${this.customStyles.color.secondary}!important;`;
+        variables = variables + `--gs-secondary-color: ${this.customStyles.color.secondary}!important;`;
       }
       if (this.customStyles.color.neutral) {
-        variables = variables + `--gt-neutral-color: ${this.customStyles.color.neutral}!important;`;
+        variables = variables + `--gs-neutral-color: ${this.customStyles.color.neutral}!important;`;
+      }
+      if (this.customStyles.color.border) {
+        variables = variables + `--gs-color-border: ${this.customStyles.color.border}!important;`;
       }
       if (this.customStyles.color.white) {
-        variables = variables + `--gt-white-color: ${this.customStyles.color.white}!important;`;
+        variables = variables + `--gs-white-color: ${this.customStyles.color.white}!important;`;
       }
       if (this.customStyles.ui.padding) {
-        variables = variables + `--gt-padding: ${this.customStyles.ui.padding}!important;`;
+        variables = variables + `--gs-padding: ${this.customStyles.ui.padding}!important;`;
       }
       if (this.customStyles.ui.primaryButton) {
         if (this.customStyles.ui.primaryButton.padding) {
-          variables = variables + `--gt-button-padding: ${this.customStyles.ui.primaryButton.padding}!important;`;
+          variables = variables + `--gs-button-padding: ${this.customStyles.ui.primaryButton.padding}!important;`;
         }
         if (this.customStyles.ui.primaryButton.color) {
-          variables = variables + `--gt-button-color: ${this.customStyles.ui.primaryButton.color}!important;`;
+          variables = variables + `--gs-button-color: ${this.customStyles.ui.primaryButton.color}!important;`;
         }
         if (this.customStyles.ui.primaryButton.background) {
-          variables = variables + `--gt-button-background: ${this.customStyles.ui.primaryButton.background}!important;`;
+          variables = variables + `--gs-button-background: ${this.customStyles.ui.primaryButton.background}!important;`;
         }
         if (this.customStyles.ui.primaryButton.borderSize) {
-          variables = variables + `--gt-button-border-size: ${this.customStyles.ui.primaryButton.borderSize}!important;`;
+          variables = variables + `--gs-button-border-size: ${this.customStyles.ui.primaryButton.borderSize}!important;`;
         }
         if (this.customStyles.ui.primaryButton.borderStyle) {
-          variables = variables + `--gt-button-border-style: ${this.customStyles.ui.primaryButton.borderStyle}!important;`;
+          variables = variables + `--gs-button-border-style: ${this.customStyles.ui.primaryButton.borderStyle}!important;`;
         }
         if (this.customStyles.ui.primaryButton.borderColor) {
-          variables = variables + `--gt-button-border-color: ${this.customStyles.ui.primaryButton.borderColor}!important;`;
+          variables = variables + `--gs-button-border-color: ${this.customStyles.ui.primaryButton.borderColor}!important;`;
         }
         if (this.customStyles.ui.primaryButton.borderRadius) {
-          variables = variables + `--gt-button-border-radius: ${this.customStyles.ui.primaryButton.borderRadius}!important;`;
+          variables = variables + `--gs-button-border-radius: ${this.customStyles.ui.primaryButton.borderRadius}!important;`;
         }
         if (this.customStyles.ui.primaryButton.borderTop) {
-          variables = variables + `--gt-button-border-top: ${this.customStyles.ui.primaryButton.borderTop}!important;`;
+          variables = variables + `--gs-button-border-top: ${this.customStyles.ui.primaryButton.borderTop}!important;`;
         }
         if (this.customStyles.ui.primaryButton.borderRight) {
-          variables = variables + `--gt-button-border-right: ${this.customStyles.ui.primaryButton.borderRight}!important;`;
+          variables = variables + `--gs-button-border-right: ${this.customStyles.ui.primaryButton.borderRight}!important;`;
         }
         if (this.customStyles.ui.primaryButton.borderBottom) {
-          variables = variables + `--gt-button-border-bottom: ${this.customStyles.ui.primaryButton.borderBottom}!important;`;
+          variables = variables + `--gs-button-border-bottom: ${this.customStyles.ui.primaryButton.borderBottom}!important;`;
         }
         if (this.customStyles.ui.primaryButton.borderLeft) {
-          variables = variables + `--gt-button-border-left: ${this.customStyles.ui.primaryButton.borderLeft}!important;`;
+          variables = variables + `--gs-button-border-left: ${this.customStyles.ui.primaryButton.borderLeft}!important;`;
         }
       }
     }

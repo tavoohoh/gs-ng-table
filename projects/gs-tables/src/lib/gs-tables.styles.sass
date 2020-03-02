@@ -7,23 +7,24 @@ $shadowStrong: 0 14px 28px rgba(0,0,0,0.15), 0 10px 10px rgba(0,0,0,0.12)
 $opacity: .8
 
 // colors
-$gt-red: #da6464
-$gt-font-color: inherit
-$gt-primary-color: #f33959
-$gt-secondary-color: #eeeeee
-$gt-neutral-color: #e0e0e0
-$gt-white-color: #ffffff
+$gs-red: #da6464
+$gs-font-color: inherit
+$gs-primary-color: #f33959
+$gs-secondary-color: #eeeeee
+$gs-neutral-color: #e0e0e0
+$gs-border-color: #eeeeee
+$gs-white-color: #ffffff
 
 // ui
-$gt-font-size: .9rem
-$gt-padding: .5rem
+$gs-font-size: .9rem
+$gs-padding: .5rem
 
 // button
-$gt-button-padding: .5rem
-$gt-button-color: #ffffff
-$gt-button-background: #f33959
-$gt-button-border-color: #f33959
-$gt-button-border-radius: 6px
+$gs-button-padding: .5rem
+$gs-button-color: #ffffff
+$gs-button-background: #f33959
+$gs-button-border-color: #f33959
+$gs-button-border-radius: 6px
 
 // behavior
 @mixin transition($time: 0.2s)
@@ -37,8 +38,8 @@ $gt-button-border-radius: 6px
 // styles
 *
   font-family: Arial, Helvetica, sans-serif
-  color: var(--gt-font-color, $gt-font-color)
-  font-size: var(--gt-font-size, $gt-font-size)
+  color: var(--gs-font-color, $gs-font-color)
+  font-size: var(--gs-font-size, $gs-font-size)
   outline: none
   box-sizing: border-box
   line-height: 1.4
@@ -56,11 +57,11 @@ $gt-button-border-radius: 6px
   font-weight: bold
   outline: none
 
-  padding: var(--gt-button-padding, $gt-button-padding)
-  color: var(--gt-button-color, $gt-white-color)
-  background-color: var(--gt-button-background, $gt-button-background)
-  border: 1px solid var(--gt-button-border-color, $gt-button-border-color)
-  border-radius: var(--gt-button-border-radius, $gt-button-border-radius)
+  padding: var(--gs-button-padding, $gs-button-padding)
+  color: var(--gs-button-color, $gs-white-color)
+  background-color: var(--gs-button-background, $gs-button-background)
+  border: 1px solid var(--gs-button-border-color, $gs-button-border-color)
+  border-radius: var(--gs-button-border-radius, $gs-button-border-radius)
 
   &:hover
     opacity: $opacity

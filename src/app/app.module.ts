@@ -17,7 +17,7 @@ const gStyles: GStyles = {
     font: '#1f2532',
     primary: '#f33959',
     secondary: '#eeeeee',
-    neutral: '#e0e0e0',
+    border: '#e0e0e0',
     white: '#ffffff'
   },
   ui: {
