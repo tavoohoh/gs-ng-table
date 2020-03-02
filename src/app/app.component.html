@@ -1,6 +1,10 @@
 <div class="table">
   <gs-table
     [tableData]="tableData"
+    [currentPage]="currentPage"
+    [totalOfPages]="totalOfPages"
+    (navigateNext)="doNavigate(true)"
+    (navigatePrevious)="doNavigate(false)"
     (rowActionEvent)="hdlRowActionEvent($event)">
   </gs-table>
 </div>

@@ -24,7 +24,11 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class GsTablesComponent implements OnChanges {
   @Input() private tableData: GTable;
+  @Input() public currentPage: number;
+  @Input() public totalOfPages: number;
   @Output() private rowActionEvent = new EventEmitter<GTableAction>();
+  @Output() private navigateNext = new EventEmitter<void>();
+  @Output() private navigatePrevious = new EventEmitter<void>();
   @ViewChild('tableContentElement', { static: false }) private tableContentElement: ElementRef;
   @ViewChild('tableHeaderElement', { static: false }) private tableHeaderElement: ElementRef;
 
@@ -39,9 +43,6 @@ export class GsTablesComponent implements OnChanges {
   public noTableData: boolean;
   public tableStyleType = GTableStyle;
 
-  // table pagination
-  public currentPage: number;
-  public totalOfPages: number;
   public canNavigateNext: boolean;
   public canNavigatePrevious: boolean;
 
@@ -54,18 +55,55 @@ export class GsTablesComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.tableData.currentValue && changes.tableData.currentValue.data) {
-      this.tableData = changes.tableData.currentValue;
-      this.tableDataAdapter();
-    } else {
-      this.noTableData = true;
-      this.onInputDataError();
+    if (!changes) {
       return;
+    }
+
+    if (changes.tableData && changes.tableData.currentValue) {
+      this.tableData = changes.tableData.currentValue;
+
+      if (this.tableData.data) {
+        this.noTableData = false;
+        this.tableDataAdapter();
+      } else {
+        this.noTableData = true;
+        this.onInputDataError();
+      }
+    }
+
+    if (
+      (changes.currentPage || this.currentPage) && (changes.totalOfPages || this.totalOfPages)
+    ) {
+      this.currentPage = changes.currentPage ? changes.currentPage.currentValue : this.currentPage;
+      this.totalOfPages = changes.totalOfPages ? changes.totalOfPages.currentValue : this.totalOfPages;
+      this.setTableFooter();
+    } else if (changes.currentPage.currentValue || changes.totalOfPages.currentValue) {
+      return console.warn(
+        'GS Table building warning:' + '\n\n' +
+        'If you wish to display current and total of pages please add to your table options `currentPage` and `totalOfPages`'
+      );
+    } else {
+      this.currentPage = null;
+      this.totalOfPages = null;
     }
 
     setTimeout(() => {
       this.setContentWidth();
     });
+  }
+
+  private setTableFooter() {
+    if (this.currentPage <= 1) {
+      this.canNavigatePrevious = false;
+    } else {
+      this.canNavigatePrevious = true;
+    }
+
+    if (this.currentPage + 1 > this.totalOfPages) {
+      this.canNavigateNext = false;
+    } else {
+      this.canNavigateNext = true;
+    }
   }
 
   private tableDataAdapter() {
@@ -80,28 +118,6 @@ export class GsTablesComponent implements OnChanges {
       this.tableHeader = this.tableData.header || this.tableContentKeys;
     }
 
-    if (this.tableData.options.currentPage && this.tableData.options.totalOfPages) {
-      this.currentPage = this.tableData.options.currentPage;
-      this.totalOfPages = this.tableData.options.totalOfPages;
-
-      if (this.tableData.options.currentPage >= 1) {
-        this.canNavigatePrevious = true;
-      } else {
-        this.canNavigatePrevious = false;
-      }
-
-      if (this.tableData.options.currentPage + 1 < this.tableData.options.totalOfPages) {
-        this.canNavigateNext = false;
-      } else {
-        this.canNavigateNext = true;
-      }
-
-    } else if (this.tableData.options.currentPage || this.tableData.options.totalOfPages) {
-      return console.warn(
-        'GS Table building warning:' + '\n\n' +
-        'If you wish to display current and total of pages please add to your table options `currentPage` and `totalOfPages`'
-      );
-    }
   }
 
   @HostBinding('attr.style')
@@ -194,11 +210,19 @@ export class GsTablesComponent implements OnChanges {
     }
   }
 
-  public hdlRowAction(action: GTableAction) {
+  public hdlRowAction(action: GTableAction): void {
     this.rowActionEvent.emit(action);
   }
 
-  private onInputDataError() {
+  public onNavigate(next: boolean): void {
+    if (next) {
+      this.navigateNext.emit();
+    } else {
+      this.navigatePrevious.emit();
+    }
+  }
+
+  private onInputDataError(): void {
     return console.error(
       'GS Table building err: Please provide tableData:' + '\n\n' +
       '1. In your template make sure you have:' + '\n\n' +
