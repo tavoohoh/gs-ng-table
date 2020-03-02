@@ -145,5 +145,13 @@ export interface GTable {
      * A dropdown button with actions to trigger events
      */
     rowActions?: GTableRowAction;
+    /**
+     * The page currently being displayed
+     */
+    currentPage?: number;
+    /**
+     * The total of available pages
+     */
+    totalOfPages?: number;
   };
 }

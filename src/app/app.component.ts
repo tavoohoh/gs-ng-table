@@ -17,6 +17,8 @@ export class AppComponent {
     ],
     options: {
       style: GTableStyle.TABLE,
+      currentPage: 1,
+      totalOfPages: 4,
       rowActions: {
         display: true,
         text: 'Actions',

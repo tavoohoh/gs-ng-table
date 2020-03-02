@@ -1,4 +1,16 @@
-import { Component, Input, OnInit, HostBinding, HostListener, ViewChild, ElementRef, Inject, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Input,
+  HostBinding,
+  HostListener,
+  ViewChild,
+  ElementRef,
+  Inject,
+  Output,
+  EventEmitter,
+  OnChanges,
+  SimpleChanges
+} from '@angular/core';
 import { GTable, GTableRowAction, GTableAction, GTableStyle, GStyles } from './gs-tables.widgets';
 import { GsTablesService } from './gs-tables.service';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -10,7 +22,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   templateUrl: './gs-tables.component.html',
   styleUrls: ['./gs-tables.component.sass']
 })
-export class GsTablesComponent implements OnInit {
+export class GsTablesComponent implements OnChanges {
   @Input() private tableData: GTable;
   @Output() private rowActionEvent = new EventEmitter<GTableAction>();
   @ViewChild('tableContentElement', { static: false }) private tableContentElement: ElementRef;
@@ -41,28 +53,22 @@ export class GsTablesComponent implements OnInit {
     this.customStyles = customStyles;
   }
 
-  ngOnInit() {
-    this.tableDataAdapter();
-
-    this.currentPage = 1;
-    this.totalOfPages = 12;
-    this.canNavigateNext = true;
-    this.canNavigatePrevious = false;
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.tableData.currentValue && changes.tableData.currentValue.data) {
+      this.tableData = changes.tableData.currentValue;
+      this.tableDataAdapter();
+    } else {
+      this.noTableData = true;
+      this.onInputDataError();
+      return;
+    }
 
     setTimeout(() => {
       this.setContentWidth();
     });
   }
 
-  // implements on change
-
   private tableDataAdapter() {
-    if (!this.tableData || !this.tableData.data) {
-      this.noTableData = true;
-      this.onInputDataError();
-      return;
-    }
-
     this.tableStyle = this.tableData.options.style || GTableStyle.TABLE;
     this.tableContent = this.tableData.data;
     this.tableRowActions = this.tableData.options.rowActions || null;
@@ -72,6 +78,29 @@ export class GsTablesComponent implements OnInit {
       this.tableContentKeys = [this.tableContentKeys[0], this.tableContentKeys[1]];
     } else {
       this.tableHeader = this.tableData.header || this.tableContentKeys;
+    }
+
+    if (this.tableData.options.currentPage && this.tableData.options.totalOfPages) {
+      this.currentPage = this.tableData.options.currentPage;
+      this.totalOfPages = this.tableData.options.totalOfPages;
+
+      if (this.tableData.options.currentPage >= 1) {
+        this.canNavigatePrevious = true;
+      } else {
+        this.canNavigatePrevious = false;
+      }
+
+      if (this.tableData.options.currentPage + 1 < this.tableData.options.totalOfPages) {
+        this.canNavigateNext = false;
+      } else {
+        this.canNavigateNext = true;
+      }
+
+    } else if (this.tableData.options.currentPage || this.tableData.options.totalOfPages) {
+      return console.warn(
+        'GS Table building warning:' + '\n\n' +
+        'If you wish to display current and total of pages please add to your table options `currentPage` and `totalOfPages`'
+      );
     }
   }
 

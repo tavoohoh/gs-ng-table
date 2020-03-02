@@ -57,7 +57,7 @@
 </ng-container>
 
 <ng-template #footer>
-  <div class="gs-table-footer">
+  <div class="gs-table-footer" *ngIf="currentPage && totalOfPages">
 
       <!-- element count -->
       <span class="gs-table-navigation_count">
