@@ -1,6 +1,6 @@
 <div class="action">
   <button class="button button-secondary" #optionsButton>
-    {{ rowAction.text }}
+    {{ rowAction.text | translate }}
     <svg *ngIf="!showActions" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
       <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/>
     </svg>
@@ -12,7 +12,7 @@
     <div class="options dropdown" #optionsContainer>
       <ng-container *ngFor="let action of rowAction.actions">
         <span (click)="hdlAction(action)" *ngIf="action.display">
-          {{ action.text }}
+          {{ action.text | translate }}
         </span>
       </ng-container>
     </div>
