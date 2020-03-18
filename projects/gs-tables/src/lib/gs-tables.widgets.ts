@@ -3,8 +3,12 @@
  * For example: 'edit', 'delete', etc...
  */
 export interface GTableAction {
-  display: boolean;
   text: string;
+  hiden?: boolean;
+  displayIf?: {
+    model: string;
+    hasValue: any;
+  };
   id?: string;
   row?: {};
 }
@@ -13,9 +17,13 @@ export interface GTableAction {
  * An event triggered when clicking an action element
  */
 export interface GTableRowAction {
-  display: boolean;
   text: string;
   actions: Array<GTableAction>;
+  hiden?: boolean;
+  displayIf?: {
+    model: string;
+    hasValue: any;
+  };
 }
 
 /**

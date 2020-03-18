@@ -8,7 +8,7 @@
       <ng-container *ngFor="let title of tableHeader">
         <span class="gs-table-header-row">{{ title | translate }}</span>
       </ng-container>
-      <ng-container *ngIf="tableRowActions && tableRowActions.display">
+      <ng-container *ngIf="tableRowActions && !tableRowActions.hiden">
         <span class="gs-table-header-row">{{ tableRowActions.text | translate }}</span>
       </ng-container>
     </div>
@@ -19,7 +19,7 @@
         <ng-container *ngFor="let key of tableContentKeys">
           <span class="gs-table-row_text">{{ row[key] | translate }}</span>
         </ng-container>
-        <ng-container *ngIf="tableRowActions && tableRowActions.display">
+        <ng-container *ngIf="tableRowActions && !tableRowActions.hiden">
           <gs-table-row-actions
             [rowAction]="tableRowActions"
             [rowData]="row"
@@ -41,7 +41,7 @@
         <ng-container *ngFor="let key of tableContentKeys">
           <span class="gs-table-row_text">{{ row[key] }}</span>
         </ng-container>
-        <ng-container *ngIf="tableRowActions && tableRowActions.display">
+        <ng-container *ngIf="tableRowActions && !tableRowActions.hiden">
           <gs-table-row-actions
             [rowAction]="tableRowActions"
             [rowData]="row"

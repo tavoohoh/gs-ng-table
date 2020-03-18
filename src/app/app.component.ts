@@ -18,34 +18,40 @@ export class AppComponent implements OnInit {
         'First Name',
         'Last Name',
         'Email Address',
-        'Age'
+        'Age',
+        'Valid'
       ],
       keyNames: [
         'firstName',
         'lastName',
         'email',
-        'age'
+        'age',
+        'valid'
       ],
       options: {
         style: GTableStyle.TABLE,
         rowActions: {
-          display: true,
           text: 'Actions',
           actions: [
             {
-              id: 'edit',
-              text: 'Edit',
-              display: true
-            },
-            {
-              id: 'delete',
-              text: 'Delete',
-              display: true
-            },
-            {
               id: 'download',
-              text: 'Download',
-              display: false
+              text: 'Download document'
+            },
+            {
+              id: 'isValid',
+              text: 'Is valid',
+              displayIf: {
+                model: 'valid',
+                hasValue: true
+              }
+            },
+            {
+              id: 'notValid',
+              text: 'Is not valid',
+              displayIf: {
+                model: 'valid',
+                hasValue: false
+              }
             }
           ]
         }
@@ -56,56 +62,64 @@ export class AppComponent implements OnInit {
           lastName: 'Santamaria',
           email: 'tavo@mail.com',
           age: 27,
-          id: 'qasd1d'
+          id: 'qasd1d',
+          valid: false
         },
         {
           firstName: 'Rachel',
           lastName: 'Mata',
           email: 'ray@mail.com',
           age: 26,
-          id: 'wasd1d'
+          id: 'wasd1d',
+          valid: true
         },
         {
           firstName: 'Yuumi',
           lastName: 'Marvel',
           email: 'yuumi@mail.com',
-          age: 1,
-          id: 'easd1d'
+          age: 12,
+          id: 'easd1d',
+          valid: true
         },
         {
           firstName: 'Nestor',
           lastName: 'Bracho',
           email: 'toto@mail.com',
           age: 32,
-          id: 'fasd1d'
+          id: 'fasd1d',
+          valid: false
         },
         {
           firstName: 'Gustavo',
           lastName: 'Santamaria',
           email: 'tavo@mail.com',
           age: 27,
-          id: 'g1asd1d'
+          id: 'g1asd1d',
+          valid: true
         },
         {
           firstName: 'Rachel',
           lastName: 'Mata',
           email: 'ray@mail.com',
           age: 26,
-          id: '1d2asd1d'
+          id: '1d2asd1d',
+          valid: false
         },
         {
           firstName: 'Yuumi',
           lastName: 'Marvel',
           email: 'yuumi@mail.com',
           age: 1,
-          id: 'd4gasd1d'
+          id: 'd4gasd1d',
+          valid: true
         },
         {
           firstName: 'Nestor',
           lastName: 'Bracho',
           email: 'toto@mail.com',
           age: 32,
-          id: 'f2fasd1d'
+          id: 'f2fasd1d',
+          valid: true
         },
       ]
     };

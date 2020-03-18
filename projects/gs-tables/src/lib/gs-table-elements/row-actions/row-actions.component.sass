@@ -24,13 +24,11 @@
   background: var(--gs-white-color, $gs-white-color)
   box-shadow: $shadowSoft
   border-radius: $gs-button-border-radius
-  width: max-content
   line-height: 1
 
   span
     @include transition()
     display: inline-block
-    width: 160px
     padding: 6px
     line-height: 1
     cursor: pointer
@@ -38,14 +36,14 @@
     text-overflow: ellipsis
     overflow: hidden
     white-space: nowrap
+    max-width: 160px
     
     &:hover
       opacity: $opacity
 
 .options.dropdown
-  width: 100px
   top: 28px
-  right: calc( 40% - 10px )
+  right: calc(40% - 10px)
 
   span
     width: 100%

@@ -11,7 +11,7 @@
   <ng-container *ngIf="showActions">
     <div class="options dropdown" #optionsContainer>
       <ng-container *ngFor="let action of rowAction.actions">
-        <span (click)="hdlAction(action)" *ngIf="action.display">
+        <span (click)="hdlAction(action)" *ngIf="displayActionIf(action)">
           {{ action.text | translate }}
         </span>
       </ng-container>

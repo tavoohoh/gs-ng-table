@@ -25,8 +25,6 @@ export class GsTableRowActionsComponent {
     }
   }
 
-  constructor() { }
-
   public hdlAction(action: GTableAction) {
     this.showActions = false;
     action.row = this.rowData;
@@ -35,5 +33,19 @@ export class GsTableRowActionsComponent {
 
   public onToggleShowActions() {
     this.showActions = !this.showActions;
+  }
+
+  public displayActionIf(action: GTableAction): boolean {
+    if (action.hiden) {
+      return false;
+    } else if (action.displayIf) {
+      if (this.rowData[action.displayIf.model].toString() === action.displayIf.hasValue.toString()) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return true;
+    }
   }
 }
