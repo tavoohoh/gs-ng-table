@@ -58,25 +58,25 @@ export class AppComponent implements OnInit {
       },
       data: [
         {
-          firstName: 'Gustavo',
-          lastName: 'Santamaria',
-          email: 'tavo@mail.com',
-          age: 27,
+          firstName: 'asdasdaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+          lastName: 'Qdmama asdmmm as mm asdasd mmasd',
+          email: 'taddddddddddddddddddddddddddddddddddddddvo@mail.com',
+          age: 2111111111111111117,
           id: 'qasd1d',
           valid: false
         },
         {
-          firstName: 'Rachel',
-          lastName: 'Mata',
+          firstName: 'aaaaaaaaaamaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+          lastName: 'Hola Hola Hola Hola Hola Hola Hola Hola Hola Hola ',
           email: 'ray@mail.com',
-          age: 26,
+          age: 2123111198765443218000,
           id: 'wasd1d',
           valid: true
         },
         {
           firstName: 'Yuumi',
           lastName: 'Marvel',
-          email: 'yuumi@mail.com',
+          email: 'yuumaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaai@mail.com',
           age: 12,
           id: 'easd1d',
           valid: true
@@ -129,8 +129,12 @@ export class AppComponent implements OnInit {
     console.log('Event', event);
   }
 
-  public doNavigate(next: boolean) {
-    this.currentPage = next ? this.currentPage - 1 : this.currentPage + 1;
+  public doNavigate(nav: string) {
+    if (nav === 'next') {
+      this.currentPage = ++this.currentPage;
+    } else {
+      this.currentPage = --this.currentPage;
+    }
     this.tableData.data = this.shuffle(this.tableData.data);
   }
 
