@@ -29,6 +29,7 @@ export class GsTablesComponent implements OnChanges {
   @Output() private rowActionEvent = new EventEmitter<GTableAction>();
   @Output() private navigateNext = new EventEmitter<void>();
   @Output() private navigatePrevious = new EventEmitter<void>();
+  @Output() private navigateTo = new EventEmitter<number>();
   @ViewChild('tableContentElement', { static: false }) private tableContentElement: ElementRef;
   @ViewChild('tableHeaderElement', { static: false }) private tableHeaderElement: ElementRef;
 
@@ -222,12 +223,30 @@ export class GsTablesComponent implements OnChanges {
     this.rowActionEvent.emit(action);
   }
 
+  /**
+   * Navigate next or previous based on
+   * @param next if true navigate next, else previous
+   *
+   * @deprecated use `onNavigateTo` instead
+   */
   public onNavigate(next: boolean): void {
     if (next) {
       this.navigateNext.emit();
+      this.navigateTo.emit(this.currentPage + 1);
     } else {
       this.navigatePrevious.emit();
+      this.navigateTo.emit(this.currentPage - 1);
     }
+  }
+
+  /**
+   * Navigate to specific page
+   * @param page number of page
+   *
+   * returns the next page value
+   */
+  public onNavigateTo(page: number): void {
+    this.navigateTo.emit(page);
   }
 
   private onInputDataError(): void {

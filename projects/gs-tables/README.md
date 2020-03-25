@@ -73,6 +73,9 @@ Add `gs-table` component to your HTML, import interfaces and define properties.
 <h1>My table</h1>
 <gs-table
   [tableData]="tableData"
+  [currentPage]="currentPage"
+  [totalOfPages]="totalOfPages"
+  (navigateTo)="doNavigateTo($event)"
   (rowActionEvent)="hdlRowActionEvent($event)">
 </gs-table>
 ```
@@ -80,6 +83,9 @@ Add `gs-table` component to your HTML, import interfaces and define properties.
 |                   |                                                              |
 |-------------------|--------------------------------------------------------------|
 | tableData         | Send your form fields to gs-form to render your form         |
+| currentPage       | The page the table is currently displaying                   |
+| totalOfPages      | The number of pages that the table can display               |
+| navigateTo        | Returns the value of a specific page. Use to change the data in the table according to the page. |
 | rowActionEvent    | Send options so gs-form can customize your form as you like  |
 
 ```ts
@@ -142,6 +148,10 @@ export class AppComponent {
 
   public hdlRowActionEvent(event) {
     console.log('Event', event);
+  }
+
+  public navigateTo(page: number): void {
+    console.log('navigate to page:', page);
   }
 }
 ```

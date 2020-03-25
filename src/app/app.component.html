@@ -3,8 +3,7 @@
     [tableData]="tableData"
     [currentPage]="currentPage"
     [totalOfPages]="totalOfPages"
-    (navigateNext)="doNavigate('next')"
-    (navigatePrevious)="doNavigate('previous')"
+    (navigateTo)="doNavigateTo($event)"
     (rowActionEvent)="hdlRowActionEvent($event)">
   </gs-table>
 </div>

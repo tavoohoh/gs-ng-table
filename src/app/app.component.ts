@@ -125,11 +125,11 @@ export class AppComponent implements OnInit {
     };
   }
 
-  public hdlRowActionEvent(event) {
+  public hdlRowActionEvent(event): void {
     console.log('Event', event);
   }
 
-  public doNavigate(nav: string) {
+  public doNavigate(nav: string): void {
     if (nav === 'next') {
       this.currentPage = ++this.currentPage;
     } else {
@@ -138,7 +138,12 @@ export class AppComponent implements OnInit {
     this.tableData.data = this.shuffle(this.tableData.data);
   }
 
-  private shuffle(array) {
+  public doNavigateTo(page: number): void {
+    this.currentPage = page;
+    this.tableData.data = this.shuffle(this.tableData.data);
+  }
+
+  private shuffle(array: Array<any>): Array<any> {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];

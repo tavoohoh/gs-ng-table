@@ -65,25 +65,48 @@
       </span>
 
       <!-- navigation controlls -->
+
+      <!-- navigate to first page -->
       <button
         type="button"
-        class="gs-table-navigation-left"
+        class="gs-table-navigation-btn rotate180"
+        [class.disabled]="currentPage === 1"
+        (click)="onNavigateTo(1)">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <path d="M0 3.795l2.995-2.98 11.132 11.185-11.132 11.186-2.995-2.981 8.167-8.205-8.167-8.205zm18.04 8.205l-8.167 8.205 2.995 2.98 11.132-11.185-11.132-11.186-2.995 2.98 8.167 8.206z"/>
+        </svg>
+      </button>
+
+      <!-- navigate to next page -->
+      <button
+        type="button"
+        class="gs-table-navigation-btn"
         [class.disabled]="!canNavigatePrevious"
-        (click)="onNavigate(false)"
-      >
+        (click)="onNavigate(false)">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
           <path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"/>
         </svg>
       </button>
 
+      <!-- navigate to previous page -->
       <button
         type="button"
-        class="gs-table-navigation-right"
+        class="gs-table-navigation-btn"
         [class.disabled]="!canNavigateNext"
-        (click)="onNavigate(true)"
-      >
+        (click)="onNavigate(true)">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
           <path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z"/>
+        </svg>
+      </button>
+
+      <!-- navigate to last page -->
+      <button
+        type="button"
+        class="gs-table-navigation-btn"
+        [class.disabled]="currentPage === totalOfPages"
+        (click)="onNavigateTo(totalOfPages)">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <path d="M0 3.795l2.995-2.98 11.132 11.185-11.132 11.186-2.995-2.981 8.167-8.205-8.167-8.205zm18.04 8.205l-8.167 8.205 2.995 2.98 11.132-11.185-11.132-11.186-2.995 2.98 8.167 8.206z"/>
         </svg>
       </button>
 
