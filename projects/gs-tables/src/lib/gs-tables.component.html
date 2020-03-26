@@ -28,8 +28,10 @@
         </ng-container>
       </div>
 
-      <ng-container  *ngIf="noTableData">
-        <div class="gs-table-row no-data"> {{ textNoTableData | translate }} </div>
+      <ng-container *ngIf="noTableData">
+        <div class="gs-table-row no-data"> 
+          {{ noContentText | translate }} 
+        </div>
       </ng-container>
     </ng-container>
 

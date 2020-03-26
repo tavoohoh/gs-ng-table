@@ -176,6 +176,6 @@ export interface GTable {
     /**
      * set text when table has no data, for default it's spanish
      */
-    setTextNoDataTable?: string;
+    noContentText?: string;
   };
 }
