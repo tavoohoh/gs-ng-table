@@ -1,6 +1,6 @@
 <!-- https://material.angular.io/components/table/overview -->
 
-<ng-container *ngIf="!noTableData">
+<ng-container>
   <!-- GTableStyle: TABLE -->
   <div class="gs-table" *ngIf="tableStyle === tableStyleType.TABLE">
     <!-- header -->
@@ -27,6 +27,12 @@
           </gs-table-row-actions>
         </ng-container>
       </div>
+
+      <ng-container *ngIf="noTableData">
+        <div class="gs-table-row no-data"> 
+          {{ noContentText | translate }} 
+        </div>
+      </ng-container>
     </ng-container>
 
     <!-- footer -->

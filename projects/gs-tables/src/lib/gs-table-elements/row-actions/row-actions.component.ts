@@ -25,13 +25,13 @@ export class GsTableRowActionsComponent {
     }
   }
 
-  public hdlAction(action: GTableAction) {
+  public hdlAction(action: GTableAction): void {
     this.showActions = false;
     action.row = this.rowData;
     this.rowActionEvent.emit(action);
   }
 
-  public onToggleShowActions() {
+  public onToggleShowActions(): void {
     this.showActions = !this.showActions;
   }
 
@@ -39,11 +39,7 @@ export class GsTableRowActionsComponent {
     if (action.hiden) {
       return false;
     } else if (action.displayIf) {
-      if (this.rowData[action.displayIf.model].toString() === action.displayIf.hasValue.toString()) {
-        return true;
-      } else {
-        return false;
-      }
+      return this.rowData[action.displayIf.model].toString() === action.displayIf.hasValue.toString() ? true : false;
     } else {
       return true;
     }

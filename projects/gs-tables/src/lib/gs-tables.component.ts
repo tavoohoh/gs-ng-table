@@ -42,6 +42,7 @@ export class GsTablesComponent implements OnChanges {
   private customStyles: GStyles;
 
   public noTableData: boolean;
+  public noContentText: string;
   public tableStyleType = GTableStyle;
 
   public canNavigateNext: boolean;
@@ -115,6 +116,10 @@ export class GsTablesComponent implements OnChanges {
   private tableDataAdapter() {
     this.tableStyle = this.tableData.options.style || GTableStyle.TABLE;
     this.tableContent = this.tableData.data;
+    this.noTableData = this.tableData.data.length > 0 ? false : true;
+    this.noContentText = this.tableData.options.noContentText
+      ? this.tableData.options.noContentText
+      : this.tableService.getTranslate('NO_CONTENT');
     this.tableRowActions = this.tableData.options.rowActions || null;
     this.tableContentKeys = this.tableData.keyNames ? this.tableData.keyNames : this.tableService.objectKeysToArray(this.tableContent);
 
