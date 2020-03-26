@@ -156,7 +156,7 @@ export interface GTable {
    */
   options?: {
     /**
-     * Set the table desgin
+     * Set the table design
      *
      * By Default: `GTableStyle.TABLE`
      */
@@ -173,5 +173,9 @@ export interface GTable {
      * The total of available pages
      */
     totalOfPages?: number;
+    /**
+     * set text when table has no data, for default it's spanish
+     */
+    setTextNoDataTable?: string;
   };
 }
