@@ -2,8 +2,8 @@
 
 <ng-container>
   <!-- GTableStyle: TABLE -->
-  <div class="gs-table" *ngIf="tableStyle === tableStyleType.TABLE">
-    <ng-container *ngIf="!noTableData; else noTableContent">
+  <ng-container *ngIf="!noTableData; else noTableContent">
+    <div class="gs-table" *ngIf="tableStyle === tableStyleType.TABLE">
       <!-- header -->
       <div class="gs-table-header" [style.padding-right.px]="tableContentPadding" #tableHeaderElement>
         <ng-container *ngFor="let title of tableHeader">
@@ -32,8 +32,8 @@
 
       <!-- footer -->
       <ng-container *ngTemplateOutlet="footer"></ng-container>
-    </ng-container>
-  </div>
+    </div>
+  </ng-container>
 
   <!-- GTableStyle: SINGLE -->
   <div class="gs-table-single" *ngIf="tableStyle === tableStyleType.SINGLE">

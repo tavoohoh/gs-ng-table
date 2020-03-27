@@ -7,35 +7,6 @@
   font-size: 80%
   opacity: 0.6
 
-.no-data
-  display: grid
-  padding: 1rem
-  grid-template-rows: 14px 100px 14px
-  border: 1px solid var(--gs-border-color, $gs-border-color)
-  background-color: var(--gs-white-color, $gs-white-color)
-
-  .header,
-  .footer
-    display: grid
-    gap: 1rem
-    align-self: center
-
-    span
-      height: 12px
-      background-color: $gs-border-color
-      border-radius: 14px
-
-  .header
-    grid-template-columns: repeat(4, 1fr)
-
-  .footer
-    grid-template-columns: repeat(2, 30px) 1fr
-
-  .body
-    align-self: center
-    text-align: center
-    font-weight: bold
-  
 .gs-table
   border: 1px solid var(--gs-border-color, $gs-border-color)
   background-color: var(--gs-white-color, $gs-white-color)
@@ -121,3 +92,31 @@
     
 //       .gs-table-content-row_text
 //         align-self: center
+
+.no-data
+  display: grid
+  grid-template-rows: 100px
+
+  .header,
+  .footer
+    display: grid
+    gap: 1rem
+    align-self: center
+    display: none
+
+    span
+      height: 12px
+      background-color: $gs-border-color
+      border-radius: 14px
+
+  .header
+    grid-template-columns: repeat(4, 1fr)
+
+  .footer
+    grid-template-columns: repeat(2, 30px) 1fr
+
+  .body
+    align-self: center
+    text-align: center
+    font-weight: bold
+  
