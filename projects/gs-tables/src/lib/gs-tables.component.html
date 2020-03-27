@@ -3,40 +3,36 @@
 <ng-container>
   <!-- GTableStyle: TABLE -->
   <div class="gs-table" *ngIf="tableStyle === tableStyleType.TABLE">
-    <!-- header -->
-    <div class="gs-table-header" [style.padding-right.px]="tableContentPadding" #tableHeaderElement>
-      <ng-container *ngFor="let title of tableHeader">
-        <span class="gs-table-header-row">{{ title | translate }}</span>
-      </ng-container>
-      <ng-container *ngIf="tableRowActions && !tableRowActions.hiden">
-        <span class="gs-table-header-row">{{ tableRowActions.text | translate }}</span>
-      </ng-container>
-    </div>
-    
-    <!-- content -->
-    <ng-container #tableContentElement *ngIf="tableContent && tableContentKeys">
-      <div class="gs-table-row" *ngFor="let row of tableContent">
-        <ng-container *ngFor="let key of tableContentKeys">
-          <span class="gs-table-row_text">{{ row[key] | translate }}</span>
+    <ng-container *ngIf="!noTableData; else noTableContent">
+      <!-- header -->
+      <div class="gs-table-header" [style.padding-right.px]="tableContentPadding" #tableHeaderElement>
+        <ng-container *ngFor="let title of tableHeader">
+          <span class="gs-table-header-row">{{ title | translate }}</span>
         </ng-container>
         <ng-container *ngIf="tableRowActions && !tableRowActions.hiden">
-          <gs-table-row-actions
-            [rowAction]="tableRowActions"
-            [rowData]="row"
-            (rowActionEvent)="hdlRowAction($event)">
-          </gs-table-row-actions>
+          <span class="gs-table-header-row">{{ tableRowActions.text | translate }}</span>
         </ng-container>
       </div>
-
-      <ng-container *ngIf="noTableData">
-        <div class="gs-table-row no-data"> 
-          {{ noContentText | translate }} 
+      
+      <!-- content -->
+      <ng-container #tableContentElement *ngIf="tableContent && tableContentKeys">
+        <div class="gs-table-row" *ngFor="let row of tableContent">
+          <ng-container *ngFor="let key of tableContentKeys">
+            <span class="gs-table-row_text">{{ row[key] | translate }}</span>
+          </ng-container>
+          <ng-container *ngIf="tableRowActions && !tableRowActions.hiden">
+            <gs-table-row-actions
+              [rowAction]="tableRowActions"
+              [rowData]="row"
+              (rowActionEvent)="hdlRowAction($event)">
+            </gs-table-row-actions>
+          </ng-container>
         </div>
       </ng-container>
-    </ng-container>
 
-    <!-- footer -->
-    <ng-container *ngTemplateOutlet="footer"></ng-container>
+      <!-- footer -->
+      <ng-container *ngTemplateOutlet="footer"></ng-container>
+    </ng-container>
   </div>
 
   <!-- GTableStyle: SINGLE -->
@@ -116,5 +112,24 @@
         </svg>
       </button>
 
+  </div>
+</ng-template>
+
+<ng-template #noTableContent>
+  <div class="no-data">
+    <span class="header">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
+    <span class="body">
+      {{ noContentText | translate }}
+    </span>
+    <span class="footer">
+      <span></span>
+      <span></span>
+      <div></div>
+    </span>
   </div>
 </ng-template>

@@ -23,12 +23,40 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./gs-tables.component.sass']
 })
 export class GsTablesComponent implements OnChanges {
+  /**
+   * Table data
+   *
+   * @description
+   * An `GTable` object with table configuration
+   */
   @Input() private tableData: GTable;
+  /**
+   * Current page being displayed
+   * This value is required to display pagination
+   */
   @Input() public currentPage: number;
+  /**
+   * Total of pages
+   * This value is required to display pagination
+   */
   @Input() public totalOfPages: number;
+  /**
+   * Event emitted when an action is clicked
+   */
   @Output() private rowActionEvent = new EventEmitter<GTableAction>();
+  /**
+   * Event emitted when `navigateNext` button is clicked
+   * @deprecated use `navigateTo` event instead
+   */
   @Output() private navigateNext = new EventEmitter<void>();
+  /**
+   * Event emitted when `navigatePrevious button is clicked
+   * @deprecated use `navigateTo` event instead
+   */
   @Output() private navigatePrevious = new EventEmitter<void>();
+  /**
+   * Event emitted when any of the pagination buttons are clicked
+   */
   @Output() private navigateTo = new EventEmitter<number>();
   @ViewChild('tableContentElement', { static: false }) private tableContentElement: ElementRef;
   @ViewChild('tableHeaderElement', { static: false }) private tableHeaderElement: ElementRef;
@@ -236,9 +264,11 @@ export class GsTablesComponent implements OnChanges {
    */
   public onNavigate(next: boolean): void {
     if (next) {
+      // tslint:disable-next-line: deprecation
       this.navigateNext.emit();
       this.navigateTo.emit(this.currentPage + 1);
     } else {
+      // tslint:disable-next-line: deprecation
       this.navigatePrevious.emit();
       this.navigateTo.emit(this.currentPage - 1);
     }

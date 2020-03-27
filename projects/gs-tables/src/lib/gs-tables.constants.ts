@@ -1,9 +1,12 @@
 
 export const TEXT_TABLE: { [key: string]: { [key: string]: string } } = {
-  en: {
-    NO_CONTENT: 'The table has no data to display',
-  },
   es: {
-    NO_CONTENT: 'La tabla no tiene datos para mostrar',
+    NO_CONTENT: 'No hay registros en esta tabla',
+  },
+  en: {
+    NO_CONTENT: 'There are no records in this table',
+  },
+  pr: {
+    NO_CONTENT: 'Não há registros nesta tabela',
   }
 };
