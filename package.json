@@ -1,6 +1,6 @@
 {
   "name": "gs-tables-core",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -11,7 +11,7 @@
     "lib:build": "ng-packagr -p projects/gs-tables/ng-package.json",
     "lib:init-repo": "cd ./dist/gs-tables/ && git init && git remote add origin git@bitbucket.org:rappinc/rpp-ngtables-core.git",
     "lib:checkout": "cd ./dist/gs-tables/ && git checkout -b compiled",
-    "lib:commit": "cd ./dist/gs-tables/ && git add . && git commit -m '1.2.1'",
+    "lib:commit": "cd ./dist/gs-tables/ && git add . && git commit -m '1.2.2'",
     "lib:push": "cd ./dist/gs-tables/ && git push -f --set-upstream origin compiled",
     "lib:publish": "npm run lib:build && npm run lib:init-repo && npm run lib:checkout && npm run lib:commit && npm run lib:push"
   },
