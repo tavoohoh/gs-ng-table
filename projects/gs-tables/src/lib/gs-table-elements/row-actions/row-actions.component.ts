@@ -25,8 +25,6 @@ export class GsTableRowActionsComponent {
     }
   }
 
-  constructor() { }
-
   public hdlAction(action: GTableAction) {
     this.showActions = false;
     action.row = this.rowData;

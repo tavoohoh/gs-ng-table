@@ -122,7 +122,6 @@ export class GsTablesComponent implements OnChanges {
     } else {
       this.tableHeader = this.tableData.header || this.tableContentKeys;
     }
-
   }
 
   @HostBinding('attr.style')
