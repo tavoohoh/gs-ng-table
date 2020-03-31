@@ -14,6 +14,9 @@ import {
 import { GTable, GTableRowAction, GTableAction, GTableStyle, GStyles } from './gs-tables.widgets';
 import { GsTablesService } from './gs-tables.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { LOCATION } from './gs-tables.constants';
+import { GKeyType } from './gs-tables.models';
+import { GTypeRowEnum } from './gs-tables.enum';
 
 // https://uxdesign.cc/design-better-data-tables-4ecc99d23356
 
@@ -67,6 +70,7 @@ export class GsTablesComponent implements OnChanges {
   public tableContentPadding: number;
   public tableRowActions: GTableRowAction;
   public tableStyle: GTableStyle;
+  public tablesKeyType: Array<GKeyType>;
   private customStyles: GStyles;
 
   public noTableData: boolean;
@@ -143,6 +147,12 @@ export class GsTablesComponent implements OnChanges {
 
   private tableDataAdapter() {
     this.tableStyle = this.tableData.options.style || GTableStyle.TABLE;
+    this.tablesKeyType = this.tableData.keyTypes;
+
+    if (this.tablesKeyType) {
+      this.formatData();
+    }
+
     this.tableContent = this.tableData.data;
     this.noTableData = this.tableData.data.length > 0 ? false : true;
     this.noContentText = this.tableData.options.noContentText
@@ -156,7 +166,79 @@ export class GsTablesComponent implements OnChanges {
     } else {
       this.tableHeader = this.tableData.header || this.tableContentKeys;
     }
+  }
 
+  private formatData() {
+    this.tablesKeyType.forEach(type => {
+      // tslint:disable-next-line: prefer-for-of
+      for (let i = 0; i < this.tableData.data.length; i++) {
+        switch (type.type) {
+          case GTypeRowEnum.CURRENCY:
+            this.tableData.data[i][type.key] = this.formatCurrency(this.tableData.data[i][type.key]);
+            break;
+          case GTypeRowEnum.PHONE:
+          // TODO create format Phone
+        }
+      }
+    });
+  }
+
+  private formatCurrency(valueTable: string): string {
+    let value = valueTable;
+    const location = LOCATION[this.tableData.options.country] || LOCATION[`co`];
+
+    const prefix = location.currencyFormat.symbol;
+    const suffix = location.currencyFormat.code;
+    const thousandsSeparator = location.currencyFormat.thousands;
+    const decimalSeparator = location.currencyFormat.decimal;
+    const precision = location.currencyFormat.precision;
+
+    let inputVal = valueTable || '0';
+
+    // remove any leading zeros
+    if (inputVal.substring(0, 1) === '0') {
+      inputVal = inputVal.replace(/^[0|\D]*/, '');
+    }
+
+    // format decimal if applies
+    if (!inputVal || inputVal.length === 1 && inputVal.substring(0, 1) === '0') {
+      let emptyDecimals = '0';
+
+      if (precision > 0) {
+        for (let index = 0; index < precision; index++) {
+          emptyDecimals = emptyDecimals + '0';
+        }
+      }
+      inputVal = emptyDecimals;
+    }
+
+    const cleanValue = inputVal.replace(/\D/g, '');
+
+    let decimals = null;
+    let thousands = null;
+
+    // format number as currency
+    if (precision > 0) {
+      decimals = cleanValue.slice(precision - precision * 2);
+
+      if (decimals.length < precision) {
+        for (let index = 0; index < precision - Number(decimals); index++) {
+          decimals = '0' + decimals;
+        }
+        thousands = '0';
+      } else {
+        thousands = cleanValue.substring(0, cleanValue.length - precision) || '0';
+      }
+
+    } else {
+      thousands = cleanValue;
+    }
+
+    const formattedThousands = thousands.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, thousandsSeparator);
+
+    value = `${prefix} ${formattedThousands + (decimals ? decimalSeparator + decimals : '')} ${suffix}`;
+
+    return value;
   }
 
   @HostBinding('attr.style')

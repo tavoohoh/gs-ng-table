@@ -1,3 +1,6 @@
+import { GCountryCode } from './gs-tables.enum';
+import { GKeyType } from './gs-tables.models';
+
 /**
  * A row action element
  * For example: 'edit', 'delete', etc...
@@ -152,9 +155,17 @@ export interface GTable {
    */
   keyNames?: Array<string>;
   /**
+   * Key type of the data values
+   */
+  keyTypes?: Array<GKeyType>;
+  /**
    * Change the table design or add funcionalities
    */
   options?: {
+    /**
+     * Set default country using `GFieldCountryCode` enum form gs-field
+     */
+    country?: GCountryCode;
     /**
      * Set the table design
      *
