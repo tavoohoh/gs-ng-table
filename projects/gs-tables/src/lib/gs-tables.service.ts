@@ -7,7 +7,6 @@ import { TEXT_TABLE } from './gs-tables.constants';
   providedIn: 'root'
 })
 export class GsTablesService {
-
   constructor(private translateService: TranslateService) { }
 
   public objectKeysToArray(rawArray: Array<object>): Array<string> {
@@ -42,5 +41,4 @@ export class GsTablesService {
 
     return message;
   }
-
 }

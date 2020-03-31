@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GTable, GTableStyle } from 'projects/gs-tables/src/public-api';
+import { GCountryCode } from 'projects/gs-tables/src/lib/gs-tables.enum';
 
 @Component({
   selector: 'app-root',
@@ -29,6 +30,7 @@ export class AppComponent implements OnInit {
         'valid'
       ],
       options: {
+        country: GCountryCode.CO,
         style: GTableStyle.TABLE,
         rowActions: {
           text: 'Actions',
