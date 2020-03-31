@@ -1,4 +1,5 @@
 import { GCountryCode } from './gs-tables.enum';
+import { GKeyType } from './gs-tables.models';
 
 /**
  * A row action element
@@ -153,6 +154,10 @@ export interface GTable {
    * Optional. If not defined the table will iterate over the keys of its data.
    */
   keyNames?: Array<string>;
+  /**
+   * Key type of the data values
+   */
+  keyTypes?: Array<GKeyType>;
   /**
    * Change the table design or add funcionalities
    */

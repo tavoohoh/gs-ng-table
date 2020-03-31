@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GTable, GTableStyle } from 'projects/gs-tables/src/public-api';
-import { GCountryCode } from 'projects/gs-tables/src/lib/gs-tables.enum';
+import { GCountryCode, GTypeRowEnum } from 'projects/gs-tables/src/lib/gs-tables.enum';
 
 @Component({
   selector: 'app-root',
@@ -20,17 +20,25 @@ export class AppComponent implements OnInit {
         'Last Name',
         'Email Address',
         'Age',
-        'Valid'
+        'Valid',
+        'Price'
       ],
       keyNames: [
         'firstName',
         'lastName',
         'email',
         'age',
-        'valid'
+        'valid',
+        'price'
+      ],
+      keyTypes: [
+        {
+          key: 'price',
+          type: GTypeRowEnum.CURRENCY
+        }
       ],
       options: {
-        country: GCountryCode.CO,
+        country: GCountryCode.US,
         style: GTableStyle.TABLE,
         rowActions: {
           text: 'Actions',
@@ -65,7 +73,8 @@ export class AppComponent implements OnInit {
           email: 'taddddddddddddddddddddddddddddddddddddddvo@mail.com',
           age: 2111111111111111117,
           id: 'qasd1d',
-          valid: false
+          valid: false,
+          price: '234000'
         },
         {
           firstName: 'aaaaaaaaaamaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
@@ -73,7 +82,8 @@ export class AppComponent implements OnInit {
           email: 'ray@mail.com',
           age: 2123111198765443218000,
           id: 'wasd1d',
-          valid: true
+          valid: true,
+          price: '234000'
         },
         {
           firstName: 'Yuumi',
@@ -81,7 +91,8 @@ export class AppComponent implements OnInit {
           email: 'yuumaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaai@mail.com',
           age: 12,
           id: 'easd1d',
-          valid: true
+          valid: true,
+          price: '234000'
         },
         {
           firstName: 'Nestor',
@@ -89,7 +100,8 @@ export class AppComponent implements OnInit {
           email: 'toto@mail.com',
           age: 32,
           id: 'fasd1d',
-          valid: false
+          valid: false,
+          price: '234000'
         },
         {
           firstName: 'Gustavo',
@@ -97,7 +109,8 @@ export class AppComponent implements OnInit {
           email: 'tavo@mail.com',
           age: 27,
           id: 'g1asd1d',
-          valid: true
+          valid: true,
+          price: '234000'
         },
         {
           firstName: 'Rachel',
@@ -105,7 +118,8 @@ export class AppComponent implements OnInit {
           email: 'ray@mail.com',
           age: 26,
           id: '1d2asd1d',
-          valid: false
+          valid: false,
+          price: '234000'
         },
         {
           firstName: 'Yuumi',
@@ -113,7 +127,8 @@ export class AppComponent implements OnInit {
           email: 'yuumi@mail.com',
           age: 1,
           id: 'd4gasd1d',
-          valid: true
+          valid: true,
+          price: '234000'
         },
         {
           firstName: 'Nestor',
@@ -121,7 +136,8 @@ export class AppComponent implements OnInit {
           email: 'toto@mail.com',
           age: 32,
           id: 'f2fasd1d',
-          valid: true
+          valid: true,
+          price: '234000'
         },
       ]
     };

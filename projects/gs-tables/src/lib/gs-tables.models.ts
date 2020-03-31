@@ -1,3 +1,4 @@
+import { GTypeRowEnum } from './gs-tables.enum';
 /**
  * Location interface and its dependencies
  */
@@ -22,4 +23,9 @@ export interface GLocation {
     precision: number;
   };
   disabled?: boolean;
+}
+
+export interface GKeyType {
+  key: string;
+  type: GTypeRowEnum;
 }

@@ -13,3 +13,8 @@ export enum GCountryCode {
   UY = 'uy',
   VE = 've'
 }
+
+export enum GTypeRowEnum {
+  PHONE = 'phone',
+  CURRENCY = 'currency'
+}
