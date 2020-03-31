@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+
+import { TEXT_TABLE } from './gs-tables.constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GsTablesService {
-
-  constructor() { }
+  constructor(private translateService: TranslateService) { }
 
   public objectKeysToArray(rawArray: Array<object>): Array<string> {
     const contentKeys = [];
@@ -17,5 +19,26 @@ export class GsTablesService {
     }
 
     return contentKeys;
+  }
+
+  public getTranslate(key: string, param?: string) {
+    let lang = this.translateService.currentLang;
+
+    if (!lang) {
+      console.warn(`translateService.currentLang is not set, using default language: 'es'`);
+      lang = 'es';
+    }
+
+    const messageLang = !TEXT_TABLE[lang] ?
+      console.warn(`We don't have support for language ${lang}. Please email us to hi@tavoohoh.com. Using default language: 'es'`) :
+      TEXT_TABLE[lang];
+
+    let message = messageLang[key];
+
+    if (param) {
+      message = message.replace('${param}', param);
+    }
+
+    return message;
   }
 }

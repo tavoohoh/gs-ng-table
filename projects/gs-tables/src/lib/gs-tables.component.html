@@ -1,37 +1,39 @@
 <!-- https://material.angular.io/components/table/overview -->
 
-<ng-container *ngIf="!noTableData">
+<ng-container>
   <!-- GTableStyle: TABLE -->
-  <div class="gs-table" *ngIf="tableStyle === tableStyleType.TABLE">
-    <!-- header -->
-    <div class="gs-table-header" [style.padding-right.px]="tableContentPadding" #tableHeaderElement>
-      <ng-container *ngFor="let title of tableHeader">
-        <span class="gs-table-header-row">{{ title | translate }}</span>
-      </ng-container>
-      <ng-container *ngIf="tableRowActions && tableRowActions.display">
-        <span class="gs-table-header-row">{{ tableRowActions.text | translate }}</span>
-      </ng-container>
-    </div>
-    
-    <!-- content -->
-    <ng-container #tableContentElement *ngIf="tableContent && tableContentKeys">
-      <div class="gs-table-row" *ngFor="let row of tableContent">
-        <ng-container *ngFor="let key of tableContentKeys">
-          <span class="gs-table-row_text">{{ row[key] | translate }}</span>
+  <ng-container *ngIf="!noTableData; else noTableContent">
+    <div class="gs-table" *ngIf="tableStyle === tableStyleType.TABLE">
+      <!-- header -->
+      <div class="gs-table-header" [style.padding-right.px]="tableContentPadding" #tableHeaderElement>
+        <ng-container *ngFor="let title of tableHeader">
+          <span class="gs-table-header-row">{{ title | translate }}</span>
         </ng-container>
-        <ng-container *ngIf="tableRowActions && tableRowActions.display">
-          <gs-table-row-actions
-            [rowAction]="tableRowActions"
-            [rowData]="row"
-            (rowActionEvent)="hdlRowAction($event)">
-          </gs-table-row-actions>
+        <ng-container *ngIf="tableRowActions && !tableRowActions.hiden">
+          <span class="gs-table-header-row">{{ tableRowActions.text | translate }}</span>
         </ng-container>
       </div>
-    </ng-container>
+      
+      <!-- content -->
+      <ng-container #tableContentElement *ngIf="tableContent && tableContentKeys">
+        <div class="gs-table-row" *ngFor="let row of tableContent">
+          <ng-container *ngFor="let key of tableContentKeys">
+            <span class="gs-table-row_text">{{ row[key] | translate }}</span>
+          </ng-container>
+          <ng-container *ngIf="tableRowActions && !tableRowActions.hiden">
+            <gs-table-row-actions
+              [rowAction]="tableRowActions"
+              [rowData]="row"
+              (rowActionEvent)="hdlRowAction($event)">
+            </gs-table-row-actions>
+          </ng-container>
+        </div>
+      </ng-container>
 
-    <!-- footer -->
-    <ng-container *ngTemplateOutlet="footer"></ng-container>
-  </div>
+      <!-- footer -->
+      <ng-container *ngTemplateOutlet="footer"></ng-container>
+    </div>
+  </ng-container>
 
   <!-- GTableStyle: SINGLE -->
   <div class="gs-table-single" *ngIf="tableStyle === tableStyleType.SINGLE">
@@ -41,7 +43,7 @@
         <ng-container *ngFor="let key of tableContentKeys">
           <span class="gs-table-row_text">{{ row[key] }}</span>
         </ng-container>
-        <ng-container *ngIf="tableRowActions && tableRowActions.display">
+        <ng-container *ngIf="tableRowActions && !tableRowActions.hiden">
           <gs-table-row-actions
             [rowAction]="tableRowActions"
             [rowData]="row"
@@ -65,27 +67,69 @@
       </span>
 
       <!-- navigation controlls -->
+
+      <!-- navigate to first page -->
       <button
         type="button"
-        class="gs-table-navigation-left"
+        class="gs-table-navigation-btn rotate180"
+        [class.disabled]="currentPage === 1"
+        (click)="onNavigateTo(1)">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <path d="M0 3.795l2.995-2.98 11.132 11.185-11.132 11.186-2.995-2.981 8.167-8.205-8.167-8.205zm18.04 8.205l-8.167 8.205 2.995 2.98 11.132-11.185-11.132-11.186-2.995 2.98 8.167 8.206z"/>
+        </svg>
+      </button>
+
+      <!-- navigate to next page -->
+      <button
+        type="button"
+        class="gs-table-navigation-btn"
         [class.disabled]="!canNavigatePrevious"
-        (click)="onNavigate(true)"
-      >
+        (click)="onNavigate(false)">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
           <path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"/>
         </svg>
       </button>
 
+      <!-- navigate to previous page -->
       <button
         type="button"
-        class="gs-table-navigation-right"
+        class="gs-table-navigation-btn"
         [class.disabled]="!canNavigateNext"
-        (click)="onNavigate(false)"
-      >
+        (click)="onNavigate(true)">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
           <path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z"/>
         </svg>
       </button>
 
+      <!-- navigate to last page -->
+      <button
+        type="button"
+        class="gs-table-navigation-btn"
+        [class.disabled]="currentPage === totalOfPages"
+        (click)="onNavigateTo(totalOfPages)">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <path d="M0 3.795l2.995-2.98 11.132 11.185-11.132 11.186-2.995-2.981 8.167-8.205-8.167-8.205zm18.04 8.205l-8.167 8.205 2.995 2.98 11.132-11.185-11.132-11.186-2.995 2.98 8.167 8.206z"/>
+        </svg>
+      </button>
+
+  </div>
+</ng-template>
+
+<ng-template #noTableContent>
+  <div class="no-data">
+    <span class="header">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
+    <span class="body">
+      {{ noContentText | translate }}
+    </span>
+    <span class="footer">
+      <span></span>
+      <span></span>
+      <div></div>
+    </span>
   </div>
 </ng-template>

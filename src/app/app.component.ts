@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GTable, GTableStyle } from 'projects/gs-tables/src/public-api';
+import { GCountryCode, GTypeRowEnum } from 'projects/gs-tables/src/lib/gs-tables.enum';
 
 @Component({
   selector: 'app-root',
@@ -18,109 +19,149 @@ export class AppComponent implements OnInit {
         'First Name',
         'Last Name',
         'Email Address',
-        'Age'
+        'Age',
+        'Valid',
+        'Price'
       ],
       keyNames: [
         'firstName',
         'lastName',
         'email',
-        'age'
+        'age',
+        'valid',
+        'price'
+      ],
+      keyTypes: [
+        {
+          key: 'price',
+          type: GTypeRowEnum.CURRENCY
+        }
       ],
       options: {
+        country: GCountryCode.CO,
         style: GTableStyle.TABLE,
         rowActions: {
-          display: true,
           text: 'Actions',
           actions: [
             {
-              id: 'edit',
-              text: 'Edit',
-              display: true
-            },
-            {
-              id: 'delete',
-              text: 'Delete',
-              display: true
-            },
-            {
               id: 'download',
-              text: 'Download',
-              display: false
+              text: 'Download document'
+            },
+            {
+              id: 'isValid',
+              text: 'Is valid',
+              displayIf: {
+                model: 'valid',
+                hasValue: true
+              }
+            },
+            {
+              id: 'notValid',
+              text: 'Is not valid',
+              displayIf: {
+                model: 'valid',
+                hasValue: false
+              }
             }
           ]
         }
       },
       data: [
         {
-          firstName: 'Gustavo',
-          lastName: 'Santamaria',
-          email: 'tavo@mail.com',
-          age: 27,
-          id: 'qasd1d'
+          firstName: 'asdasdaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+          lastName: 'Qdmama asdmmm as mm asdasd mmasd',
+          email: 'taddddddddddddddddddddddddddddddddddddddvo@mail.com',
+          age: 2111111111111111117,
+          id: 'qasd1d',
+          valid: false,
+          price: '234000'
         },
         {
-          firstName: 'Rachel',
-          lastName: 'Mata',
+          firstName: 'aaaaaaaaaamaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+          lastName: 'Hola Hola Hola Hola Hola Hola Hola Hola Hola Hola ',
           email: 'ray@mail.com',
-          age: 26,
-          id: 'wasd1d'
+          age: 2123111198765443218000,
+          id: 'wasd1d',
+          valid: true,
+          price: '234000'
         },
         {
           firstName: 'Yuumi',
           lastName: 'Marvel',
-          email: 'yuumi@mail.com',
-          age: 1,
-          id: 'easd1d'
+          email: 'yuumaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaai@mail.com',
+          age: 12,
+          id: 'easd1d',
+          valid: true,
+          price: '234000'
         },
         {
           firstName: 'Nestor',
           lastName: 'Bracho',
           email: 'toto@mail.com',
           age: 32,
-          id: 'fasd1d'
+          id: 'fasd1d',
+          valid: false,
+          price: '234000'
         },
         {
           firstName: 'Gustavo',
           lastName: 'Santamaria',
           email: 'tavo@mail.com',
           age: 27,
-          id: 'g1asd1d'
+          id: 'g1asd1d',
+          valid: true,
+          price: '234000'
         },
         {
           firstName: 'Rachel',
           lastName: 'Mata',
           email: 'ray@mail.com',
           age: 26,
-          id: '1d2asd1d'
+          id: '1d2asd1d',
+          valid: false,
+          price: '234000'
         },
         {
           firstName: 'Yuumi',
           lastName: 'Marvel',
           email: 'yuumi@mail.com',
           age: 1,
-          id: 'd4gasd1d'
+          id: 'd4gasd1d',
+          valid: true,
+          price: '234000'
         },
         {
           firstName: 'Nestor',
           lastName: 'Bracho',
           email: 'toto@mail.com',
           age: 32,
-          id: 'f2fasd1d'
+          id: 'f2fasd1d',
+          valid: true,
+          price: '234000'
         },
       ]
     };
   }
 
-  public hdlRowActionEvent(event) {
+  public hdlRowActionEvent(event): void {
     console.log('Event', event);
   }
 
-  public doNavigate(next: boolean) {
-    this.currentPage = next ? this.currentPage - 1 : this.currentPage + 1;
+  public doNavigate(nav: string): void {
+    if (nav === 'next') {
+      this.currentPage = ++this.currentPage;
+    } else {
+      this.currentPage = --this.currentPage;
+    }
     this.tableData.data = this.shuffle(this.tableData.data);
   }
 
-  private shuffle(array) {
+  public doNavigateTo(page: number): void {
+    this.currentPage = page;
+    this.tableData.data = this.shuffle(this.tableData.data);
+  }
+
+  private shuffle(array: Array<any>): Array<any> {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];

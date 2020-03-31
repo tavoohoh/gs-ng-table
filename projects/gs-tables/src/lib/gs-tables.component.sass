@@ -6,7 +6,7 @@
   font-weight: bold
   font-size: 80%
   opacity: 0.6
-  
+
 .gs-table
   border: 1px solid var(--gs-border-color, $gs-border-color)
   background-color: var(--gs-white-color, $gs-white-color)
@@ -38,28 +38,20 @@
   .gs-table-footer
     border-bottom: none
     display: grid
-    gap: 2rem
-    grid-template-columns: max-content auto repeat(2, min-content)
+    gap: 0.5rem
+    grid-template-columns: auto repeat(4, 1rem) 1fr
 
     span
       @include headerFooterFont()
 
     .gs-table-navigation_count,
-    .gs-table-navigation-left,
-    .gs-table-navigation-right
+    .gs-table-navigation-btn
       align-self: center
 
     .gs-table-navigation_count
-      grid-column: 1
-    
-    .gs-table-navigation-left
-      grid-column: 3
+      padding-right: 1rem
 
-    .gs-table-navigation-right
-      grid-column: 4
-
-    .gs-table-navigation-left,
-    .gs-table-navigation-right
+    .gs-table-navigation-btn
       outline: none
       background: none
       padding: 0
@@ -69,6 +61,21 @@
 
       svg
         width: 12px
+    
+    .rotate180
+      transform: rotateY(180deg)
+
+  .gs-table-row
+    .gs-table-row_text
+      text-overflow: ellipsis
+      overflow: hidden
+      white-space: nowrap
+
+      &:hover
+        line-height: 1.5em
+        max-height: 3em
+        white-space: initial
+        word-break: break-all
 
 // .gs-table-single
 
@@ -85,3 +92,31 @@
     
 //       .gs-table-content-row_text
 //         align-self: center
+
+.no-data
+  display: grid
+  grid-template-rows: 100px
+
+  .header,
+  .footer
+    display: grid
+    gap: 1rem
+    align-self: center
+    display: none
+
+    span
+      height: 12px
+      background-color: $gs-border-color
+      border-radius: 14px
+
+  .header
+    grid-template-columns: repeat(4, 1fr)
+
+  .footer
+    grid-template-columns: repeat(2, 30px) 1fr
+
+  .body
+    align-self: center
+    text-align: center
+    font-weight: bold
+  

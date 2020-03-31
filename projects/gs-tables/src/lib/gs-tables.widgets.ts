@@ -1,10 +1,17 @@
+import { GCountryCode } from './gs-tables.enum';
+import { GKeyType } from './gs-tables.models';
+
 /**
  * A row action element
  * For example: 'edit', 'delete', etc...
  */
 export interface GTableAction {
-  display: boolean;
   text: string;
+  hiden?: boolean;
+  displayIf?: {
+    model: string;
+    hasValue: any;
+  };
   id?: string;
   row?: {};
 }
@@ -13,9 +20,13 @@ export interface GTableAction {
  * An event triggered when clicking an action element
  */
 export interface GTableRowAction {
-  display: boolean;
   text: string;
   actions: Array<GTableAction>;
+  hiden?: boolean;
+  displayIf?: {
+    model: string;
+    hasValue: any;
+  };
 }
 
 /**
@@ -144,11 +155,19 @@ export interface GTable {
    */
   keyNames?: Array<string>;
   /**
+   * Key type of the data values
+   */
+  keyTypes?: Array<GKeyType>;
+  /**
    * Change the table design or add funcionalities
    */
   options?: {
     /**
-     * Set the table desgin
+     * Set default country using `GFieldCountryCode` enum form gs-field
+     */
+    country?: GCountryCode;
+    /**
+     * Set the table design
      *
      * By Default: `GTableStyle.TABLE`
      */
@@ -165,5 +184,9 @@ export interface GTable {
      * The total of available pages
      */
     totalOfPages?: number;
+    /**
+     * set text when table has no data, for default it's spanish
+     */
+    noContentText?: string;
   };
 }
