@@ -38,7 +38,7 @@ export class AppComponent implements OnInit {
         }
       ],
       options: {
-        country: GCountryCode.US,
+        country: GCountryCode.CO,
         style: GTableStyle.TABLE,
         rowActions: {
           text: 'Actions',
