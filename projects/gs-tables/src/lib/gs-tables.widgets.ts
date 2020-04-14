@@ -7,7 +7,7 @@ import { GKeyType } from './gs-tables.models';
  */
 export interface GTableAction {
   text: string;
-  hiden?: boolean;
+  hidden?: boolean;
   displayIf?: {
     model: string;
     hasValue: any;
@@ -22,7 +22,7 @@ export interface GTableAction {
 export interface GTableRowAction {
   text: string;
   actions: Array<GTableAction>;
-  hiden?: boolean;
+  hidden?: boolean;
   displayIf?: {
     model: string;
     hasValue: any;

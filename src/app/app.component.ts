@@ -44,15 +44,11 @@ export class AppComponent implements OnInit {
           text: 'Actions',
           actions: [
             {
-              id: 'download',
-              text: 'Download document'
-            },
-            {
               id: 'isValid',
               text: 'Is valid',
               displayIf: {
                 model: 'valid',
-                hasValue: true
+                hasValue: 1
               }
             },
             {
@@ -60,7 +56,7 @@ export class AppComponent implements OnInit {
               text: 'Is not valid',
               displayIf: {
                 model: 'valid',
-                hasValue: false
+                hasValue: 2
               }
             }
           ]
@@ -73,7 +69,7 @@ export class AppComponent implements OnInit {
           email: 'taddddddddddddddddddddddddddddddddddddddvo@mail.com',
           age: 2111111111111111117,
           id: 'qasd1d',
-          valid: false,
+          valid: 1,
           price: '234000'
         },
         {
@@ -82,7 +78,7 @@ export class AppComponent implements OnInit {
           email: 'ray@mail.com',
           age: 2123111198765443218000,
           id: 'wasd1d',
-          valid: true,
+          valid: 2,
           price: '234000'
         },
         {
@@ -91,7 +87,7 @@ export class AppComponent implements OnInit {
           email: 'yuumaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaai@mail.com',
           age: 12,
           id: 'easd1d',
-          valid: true,
+          valid: 0,
           price: '234000'
         },
         {
@@ -100,7 +96,7 @@ export class AppComponent implements OnInit {
           email: 'toto@mail.com',
           age: 32,
           id: 'fasd1d',
-          valid: false,
+          valid: 0,
           price: '234000'
         },
         {
@@ -109,7 +105,7 @@ export class AppComponent implements OnInit {
           email: 'tavo@mail.com',
           age: 27,
           id: 'g1asd1d',
-          valid: true,
+          valid: 1,
           price: '234000'
         },
         {
@@ -118,7 +114,7 @@ export class AppComponent implements OnInit {
           email: 'ray@mail.com',
           age: 26,
           id: '1d2asd1d',
-          valid: false,
+          valid: 0,
           price: '234000'
         },
         {
@@ -127,7 +123,7 @@ export class AppComponent implements OnInit {
           email: 'yuumi@mail.com',
           age: 1,
           id: 'd4gasd1d',
-          valid: true,
+          valid: 1,
           price: '234000'
         },
         {
@@ -136,7 +132,7 @@ export class AppComponent implements OnInit {
           email: 'toto@mail.com',
           age: 32,
           id: 'f2fasd1d',
-          valid: true,
+          valid: 2,
           price: '234000'
         },
       ]

@@ -247,7 +247,7 @@ export class GsTablesComponent implements OnChanges {
 
     // Layout
     if (!this.noTableData && this.tableStyle === GTableStyle.TABLE && this.tableHeader.length) {
-      if (this.tableRowActions && !this.tableRowActions.hiden) {
+      if (this.tableRowActions && !this.tableRowActions.hidden) {
         variables = variables + `--gs-repeat: repeat(${this.tableHeader.length + 1}, 1fr)!important;`;
       } else {
         variables = variables + `--gs-repeat: repeat(${this.tableHeader.length}, 1fr)!important;`;

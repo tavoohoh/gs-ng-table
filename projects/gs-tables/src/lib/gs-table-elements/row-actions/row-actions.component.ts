@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, Input, Output, EventEmitter, HostListener } from '@angular/core';
+import { Component, ViewChild, ElementRef, Input, Output, EventEmitter, HostListener, OnChanges, SimpleChanges } from '@angular/core';
 import { GTableRowAction, GTableAction } from '../../gs-tables.widgets';
 
 @Component({
@@ -6,8 +6,9 @@ import { GTableRowAction, GTableAction } from '../../gs-tables.widgets';
   templateUrl: './row-actions.component.html',
   styleUrls: ['./row-actions.component.sass']
 })
-export class GsTableRowActionsComponent {
-  public showActions: boolean;
+export class GsTableRowActionsComponent implements OnChanges {
+  public openMenu: boolean;
+  public menuHasActions = false;
 
   @ViewChild('optionsContainer', { static: false }) public optionsContainer: ElementRef;
   @ViewChild('optionsButton', { static: true }) public optionsButton: ElementRef;
@@ -18,25 +19,37 @@ export class GsTableRowActionsComponent {
 
   @HostListener('document:click', ['$event'])
   clickout(event) {
-    if (this.optionsButton.nativeElement.contains(event.target)) {
-      this.onToggleShowActions();
-    } else if (this.showActions && !this.optionsContainer.nativeElement.contains(event.target)) {
-      this.showActions = false;
+    if (this.optionsButton && this.optionsButton.nativeElement.contains(event.target)) {
+      this.onToggleActionsMenu();
+    } else if (this.openMenu && !this.optionsContainer.nativeElement.contains(event.target)) {
+      this.openMenu = false;
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.rowAction && changes.rowAction.currentValue && changes.rowAction.currentValue.actions) {
+      changes.rowAction.currentValue.actions.forEach((action: GTableAction) => {
+        if (this.displayActionIf(action)) {
+          this.menuHasActions = true;
+        }
+      });
+    } else {
+      this.menuHasActions = false;
     }
   }
 
   public hdlAction(action: GTableAction): void {
-    this.showActions = false;
+    this.openMenu = false;
     action.row = this.rowData;
     this.rowActionEvent.emit(action);
   }
 
-  public onToggleShowActions(): void {
-    this.showActions = !this.showActions;
+  public onToggleActionsMenu(): void {
+    this.openMenu = !this.openMenu;
   }
 
   public displayActionIf(action: GTableAction): boolean {
-    if (action.hiden) {
+    if (action.hidden) {
       return false;
     } else if (action.displayIf) {
       return this.rowData[action.displayIf.model].toString() === action.displayIf.hasValue.toString() ? true : false;
