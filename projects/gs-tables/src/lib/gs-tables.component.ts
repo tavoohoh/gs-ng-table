@@ -193,7 +193,7 @@ export class GsTablesComponent implements OnChanges {
     const decimalSeparator = location.currencyFormat.decimal;
     const precision = location.currencyFormat.precision;
 
-    let inputVal = valueTable || '0';
+    let inputVal = valueTable.toString() || '0';
 
     // remove any leading zeros
     if (inputVal.substring(0, 1) === '0') {
