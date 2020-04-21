@@ -13,7 +13,9 @@
     "lib:checkout": "cd ./dist/gs-tables/ && git checkout -b compiled",
     "lib:commit": "cd ./dist/gs-tables/ && git add . && git commit -m '1.3.2'",
     "lib:push": "cd ./dist/gs-tables/ && git push -f --set-upstream origin compiled",
-    "lib:publish": "npm run lib:build && npm run lib:init-repo && npm run lib:checkout && npm run lib:commit && npm run lib:push"
+    "lib:publish": "npm run lib:build && npm run lib:init-repo && npm run lib:checkout && npm run lib:commit && npm run lib:push",
+    "nexus:login": "npm login --registry http://repo.ops.rappi.com/repository/npm-hosted/",
+    "nexus:publish": "npm run lib:build && cd ./dist/gs-tables && npm publish --registry http://repo.ops.rappi.com/repository/npm-hosted/"
   },
   "private": true,
   "dependencies": {

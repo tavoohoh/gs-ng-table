@@ -1,5 +1,5 @@
 {
-  "name": "gs-tables",
+  "name": "@rappipay/gs-tables",
   "version": "1.3.2",
   "description": "Simple and easy to use Angular 8 table",
   "keywords": [
@@ -10,18 +10,9 @@
   ],
   "author": {
     "name": "Gustavo Santamaria",
-    "email": "tavo_bajares@live.com",
-    "url": "https://github.com/tavoohoh"
+    "email": "gustavo.santamaria@rappi.com"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/tavoohoh/gs-table"
-  },
-  "bugs": {
-    "url" : "https://github.com/tavoohoh/gs-table/issues",
-    "email" : "tavo_bajares@live.com"
-  },
-  "license": "MIT",
+  "license": "ISC",
   "peerDependencies": {
     "@angular/common": "^8.2.14",
     "@angular/core": "^8.2.14"
