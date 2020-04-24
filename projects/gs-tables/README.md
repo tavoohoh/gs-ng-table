@@ -90,7 +90,7 @@ Add `gs-table` component to your HTML, import interfaces and define properties.
 
 ```ts
 import { Component } from '@angular/core';
-import { GTable, GTableStyle } from 'gs-tables';
+import { GTable, GTableStyle } from '@rappipay/gs-tables';
 
 @Component({
   selector: 'app-root',
