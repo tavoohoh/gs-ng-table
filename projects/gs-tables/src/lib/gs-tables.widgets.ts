@@ -30,6 +30,15 @@ export interface GTableRowAction {
 }
 
 /**
+ * Additional data
+ */
+export interface GTableAdditionalData {
+  label?: Array<object>;
+  value?: Array<string>;
+  type?: Array<GKeyType>;
+}
+
+/**
  * Input/button styles
  */
 interface GInputStyle {
@@ -141,7 +150,7 @@ export interface GTable {
   /**
    * The table data as an array of objects
    */
-  data: Array<object>;
+  data?: Array<object>;
   /**
    * Table header values
    *
@@ -159,7 +168,7 @@ export interface GTable {
    */
   keyTypes?: Array<GKeyType>;
   /**
-   * Change the table design or add funcionalities
+   * Change the table design or add functionalities
    */
   options?: {
     /**
@@ -188,5 +197,29 @@ export interface GTable {
      * set text when table has no data, for default it's spanish
      */
     noContentText?: string;
+    /**
+     * Adds an expandable container for additional data
+     * Make sure to include an object with the additional data into your data array, it may look as follow
+     *
+     * data: [
+     *   {...}
+     *   {
+     *     [...]
+     *     [
+     *       ...
+     *        additionalData: [
+     *          {
+     *            label: string,
+     *            value: string
+     *          }
+     *        ]
+     *       ...
+     *     ]
+     *     [...]
+     *   }
+     *   {...}
+     * ]
+     */
+    hasAdditionalData?: boolean;
   };
 }

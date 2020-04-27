@@ -19,16 +19,12 @@ export class AppComponent implements OnInit {
         'First Name',
         'Last Name',
         'Email Address',
-        'Age',
-        'Valid',
         'Price'
       ],
       keyNames: [
         'firstName',
         'lastName',
         'email',
-        'age',
-        'valid',
         'price'
       ],
       keyTypes: [
@@ -40,6 +36,7 @@ export class AppComponent implements OnInit {
       options: {
         country: GCountryCode.CO,
         style: GTableStyle.TABLE,
+        hasAdditionalData: true,
         rowActions: {
           text: 'Actions',
           actions: [
@@ -70,7 +67,22 @@ export class AppComponent implements OnInit {
           age: 2111111111111111117,
           id: 'qasd1d',
           valid: 1,
-          price: '234000'
+          price: '234000',
+          additionalData: [
+            {
+              label: 'TransactionId',
+              value: '109E11M'
+            },
+            {
+              label: 'User',
+              value: 'Gustavo'
+            },
+            {
+              label: 'Amount',
+              value: '1002940',
+              type: GTypeRowEnum.CURRENCY
+            }
+          ]
         },
         {
           firstName: 'aaaaaaaaaamaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
@@ -79,7 +91,22 @@ export class AppComponent implements OnInit {
           age: 2123111198765443218000,
           id: 'wasd1d',
           valid: 2,
-          price: '234000'
+          price: '234000',
+          additionalData: [
+            {
+              label: 'TransactionId',
+              value: '109E11M'
+            },
+            {
+              label: 'User',
+              value: 'Gustavo'
+            },
+            {
+              label: 'Amount',
+              value: '1002940',
+              type: GTypeRowEnum.CURRENCY
+            }
+          ]
         },
         {
           firstName: 'Yuumi',
@@ -97,7 +124,22 @@ export class AppComponent implements OnInit {
           age: 32,
           id: 'fasd1d',
           valid: 0,
-          price: '234000'
+          price: '234000',
+          additionalData: [
+            {
+              label: 'TransactionId',
+              value: '109E11M'
+            },
+            {
+              label: 'User',
+              value: 'Gustavo'
+            },
+            {
+              label: 'Amount',
+              value: '1002940',
+              type: GTypeRowEnum.CURRENCY
+            }
+          ]
         },
         {
           firstName: 'Gustavo',
@@ -124,7 +166,22 @@ export class AppComponent implements OnInit {
           age: 1,
           id: 'd4gasd1d',
           valid: 1,
-          price: '234000'
+          price: '234000',
+          additionalData: [
+            {
+              label: 'TransactionId',
+              value: '109E11M'
+            },
+            {
+              label: 'User',
+              value: 'Gustavo'
+            },
+            {
+              label: 'Amount',
+              value: '1002940',
+              type: GTypeRowEnum.CURRENCY
+            }
+          ]
         },
         {
           firstName: 'Nestor',
@@ -133,7 +190,22 @@ export class AppComponent implements OnInit {
           age: 32,
           id: 'f2fasd1d',
           valid: 2,
-          price: '234000'
+          price: '234000',
+          additionalData: [
+            {
+              label: 'TransactionId',
+              value: '109E11M'
+            },
+            {
+              label: 'User',
+              value: 'Gustavo'
+            },
+            {
+              label: 'Amount',
+              value: '1002940',
+              type: GTypeRowEnum.CURRENCY
+            }
+          ]
         },
       ]
     };

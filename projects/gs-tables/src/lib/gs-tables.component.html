@@ -6,9 +6,15 @@
     <div class="gs-table" *ngIf="tableStyle === tableStyleType.TABLE">
       <!-- header -->
       <div class="gs-table-header" [style.padding-right.px]="tableContentPadding" #tableHeaderElement>
+        <!-- additional data expandable placeholder -->
+        <span *ngIf="additionalData"></span>
+
+        <!-- header keys -->
         <ng-container *ngFor="let title of tableHeader">
           <span class="gs-table-header-row">{{ title | translate }}</span>
         </ng-container>
+
+        <!-- actions -->
         <ng-container *ngIf="tableRowActions && !tableRowActions.hidden">
           <span class="gs-table-header-row">{{ tableRowActions.text | translate }}</span>
         </ng-container>
@@ -16,18 +22,44 @@
       
       <!-- content -->
       <ng-container #tableContentElement *ngIf="tableContent && tableContentKeys">
-        <div class="gs-table-row" *ngFor="let row of tableContent">
-          <ng-container *ngFor="let key of tableContentKeys">
-            <span class="gs-table-row_text">{{ row[key] | translate }}</span>
-          </ng-container>
-          <ng-container *ngIf="tableRowActions && !tableRowActions.hidden">
-            <gs-table-row-actions
-              [rowAction]="tableRowActions"
-              [rowData]="row"
-              (rowActionEvent)="hdlRowAction($event)">
-            </gs-table-row-actions>
-          </ng-container>
-        </div>
+        <ng-container *ngFor="let row of tableContent; let i = index">
+
+          <div class="gs-table-row">
+            <!-- additional data expandable button -->
+            <ng-container *ngIf="additionalData">
+              <button 
+                *ngIf="row['additionalData']"
+                class="additional-data-toggle"
+                (click)="toggleAdditionalData(i)">
+                <svg [class.addiitonal-data-selected]="i === selectedAdditionalData" 
+                  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                  <path d="M0 16.67l2.829 2.83 9.175-9.339 9.167 9.339 2.829-2.83-11.996-12.17z"/>
+                </svg>
+              </button>
+              <span *ngIf="!row['additionalData']"></span>
+            </ng-container>
+
+            <!-- content -->
+            <ng-container *ngFor="let key of tableContentKeys">
+              <span class="gs-table-row_text" *ngIf="row[key]">{{ row[key] | translate }}</span>
+            </ng-container>
+
+            <!-- actions -->
+            <ng-container *ngIf="tableRowActions && !tableRowActions.hidden">
+              <gs-table-row-actions
+                [rowAction]="tableRowActions"
+                [rowData]="row"
+                (rowActionEvent)="hdlRowAction($event)">
+              </gs-table-row-actions>
+            </ng-container>
+          </div>
+
+          <div class="gs-table-row additional-data-row" *ngIf="additionalData && row['additionalData'] && selectedAdditionalData === i">
+            <gs-table-additional-data
+             [additionalData]="row['additionalData']">
+            </gs-table-additional-data>
+          </div>
+        </ng-container>
       </ng-container>
 
       <!-- footer -->

@@ -1,0 +1,5 @@
+<div class="additional-data">
+  <div *ngFor="let data of additionalData; let i = index">
+    <b>{{ data.label | translate }}:</b> <span> {{ data.value }}</span>
+  </div>
+</div>

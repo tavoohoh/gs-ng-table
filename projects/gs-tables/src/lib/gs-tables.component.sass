@@ -120,3 +120,34 @@
     text-align: center
     font-weight: bold
   
+/**
+ * Addtional data
+ */
+.additional-data-toggle
+  display: block
+  align-self: center
+  height: 10px
+  width: 10px
+  background: none
+  cursor: pointer
+  outline: none
+  border: none
+  padding: 0
+  line-height: 0.9
+
+  svg
+    fill: var(--gs-button-background, $gs-button-background)
+    opacity: 0.6
+    transition: 0.2s ease-in-out
+    rotate: 180deg
+    height: 10px
+    width: 10px
+
+    &.addiitonal-data-selected
+      rotate: 0deg
+      opacity: 1
+
+.additional-data-row
+  display: block!important
+  grid-template-columns: unset!important
+  height: auto!important

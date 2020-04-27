@@ -72,3 +72,12 @@ $gs-button-border-radius: 6px
   .gs-table-row:nth-last-child(2) gs-table-row-actions div.action div.options.dropdown,
   .gs-table-row:nth-last-child(3) gs-table-row-actions div.action div.options.dropdown
     top: -30px
+
+// remove dotted outline
+input::-moz-focus-inner
+  border: 0!important
+
+a, button,
+a:hover, a:active, a:focus,
+button:hover, button:active, button:focus
+  outline: none!important

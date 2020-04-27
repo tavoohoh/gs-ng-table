@@ -11,7 +11,7 @@ import {
   OnChanges,
   SimpleChanges
 } from '@angular/core';
-import { GTable, GTableRowAction, GTableAction, GTableStyle, GStyles } from './gs-tables.widgets';
+import { GTable, GTableRowAction, GTableAction, GTableStyle, GStyles, GTableAdditionalData } from './gs-tables.widgets';
 import { GsTablesService } from './gs-tables.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { LOCATION } from './gs-tables.constants';
@@ -67,6 +67,8 @@ export class GsTablesComponent implements OnChanges {
   public tableHeader: Array<string>;
   public tableContentKeys: Array<string>;
   public tableContent: Array<object>;
+  public additionalData: boolean;
+  public selectedAdditionalData: number;
   public tableContentPadding: number;
   public tableRowActions: GTableRowAction;
   public tableStyle: GTableStyle;
@@ -102,6 +104,10 @@ export class GsTablesComponent implements OnChanges {
       } else {
         this.noTableData = true;
         this.onInputDataError();
+      }
+
+      if (this.tableData.options.hasAdditionalData) {
+        this.additionalData = true;
       }
     }
 
@@ -247,8 +253,14 @@ export class GsTablesComponent implements OnChanges {
 
     // Layout
     if (!this.noTableData && this.tableStyle === GTableStyle.TABLE && this.tableHeader.length) {
+      let additionaldata = false;
+
+      if (this.additionalData) {
+        additionaldata = true;
+      }
+
       if (this.tableRowActions && !this.tableRowActions.hidden) {
-        variables = variables + `--gs-repeat: repeat(${this.tableHeader.length + 1}, 1fr)!important;`;
+        variables = variables + `--gs-repeat: ${additionaldata ? '20px' : ''} repeat(${this.tableHeader.length}, 1fr) 90px!important;`;
       } else {
         variables = variables + `--gs-repeat: repeat(${this.tableHeader.length}, 1fr)!important;`;
       }
@@ -336,6 +348,7 @@ export class GsTablesComponent implements OnChanges {
 
   public hdlRowAction(action: GTableAction): void {
     this.rowActionEvent.emit(action);
+    this.selectedAdditionalData = null;
   }
 
   /**
@@ -354,6 +367,7 @@ export class GsTablesComponent implements OnChanges {
       this.navigatePrevious.emit();
       this.navigateTo.emit(this.currentPage - 1);
     }
+    this.selectedAdditionalData = null;
   }
 
   /**
@@ -364,6 +378,7 @@ export class GsTablesComponent implements OnChanges {
    */
   public onNavigateTo(page: number): void {
     this.navigateTo.emit(page);
+    this.selectedAdditionalData = null;
   }
 
   private onInputDataError(): void {
@@ -381,5 +396,9 @@ export class GsTablesComponent implements OnChanges {
       '\xa0\xa0\xa0' + '}' + '\n' +
       '\xa0}'
     );
+  }
+
+  public toggleAdditionalData(selectedAdditionalData: number): void {
+    this.selectedAdditionalData = this.selectedAdditionalData === selectedAdditionalData ? null : selectedAdditionalData;
   }
 }

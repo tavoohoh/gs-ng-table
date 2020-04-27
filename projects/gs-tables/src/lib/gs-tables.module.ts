@@ -5,12 +5,14 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { GsTablesComponent } from './gs-tables.component';
 import { GsTableRowActionsComponent } from './gs-table-elements/row-actions/row-actions.component';
+import { GsAdditionalDataComponent } from './gs-table-elements/additional-data/additional-data.component';
 import { GStyles } from './gs-tables.widgets';
 
 @NgModule({
   declarations: [
     GsTablesComponent,
-    GsTableRowActionsComponent
+    GsTableRowActionsComponent,
+    GsAdditionalDataComponent
   ],
   imports: [
     CommonModule,
