@@ -262,7 +262,7 @@ export class GsTablesComponent implements OnChanges {
       if (this.tableRowActions && !this.tableRowActions.hidden) {
         variables = variables + `--gs-repeat: ${additionaldata ? '20px' : ''} repeat(${this.tableHeader.length}, 1fr) 90px!important;`;
       } else {
-        variables = variables + `--gs-repeat: repeat(${this.tableHeader.length}, 1fr)!important;`;
+        variables = variables + `--gs-repeat: ${additionaldata ? '20px' : ''} repeat(${this.tableHeader.length}, 1fr)!important;`;
       }
     }
 
