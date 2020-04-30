@@ -38,7 +38,7 @@ export class GsTableRowActionsComponent implements OnChanges {
     }
   }
 
-  public hdlAction(event: any, action: GTableAction): void {
+  public hdlAction(action: GTableAction): void {
     this.openMenu = false;
     action.row = this.rowData;
     this.rowActionEvent.emit(action);
