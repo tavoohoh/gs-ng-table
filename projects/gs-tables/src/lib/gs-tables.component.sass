@@ -126,8 +126,6 @@
 .additional-data-toggle
   display: block
   align-self: center
-  height: 10px
-  width: 10px
   background: none
   cursor: pointer
   outline: none
@@ -136,15 +134,11 @@
   line-height: 0.9
 
   svg
-    fill: var(--gs-button-background, $gs-button-background)
     opacity: 0.6
     transition: 0.2s ease-in-out
-    rotate: 180deg
-    height: 10px
-    width: 10px
 
     &.addiitonal-data-selected
-      rotate: 0deg
+      fill: var(--gs-button-background, $gs-button-background)
       opacity: 1
 
 .additional-data-row
@@ -154,3 +148,6 @@
 
 .selected-row
   background-color: var(--gs-border-color, $gs-border-color)
+
+.cursor-pointer
+  cursor: pointer
