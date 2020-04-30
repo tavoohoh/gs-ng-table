@@ -24,7 +24,7 @@
       <ng-container #tableContentElement *ngIf="tableContent && tableContentKeys">
         <ng-container *ngFor="let row of tableContent; let i = index">
 
-          <div class="gs-table-row" [class.selected-row]="selectedAdditionalData === i" [class.cursor-pointer]="additionalData">
+          <div class="gs-table-row" [class.selected-row]="selectedAdditionalData === i" [class.cursor-pointer]="additionalData" (click)="toggleAdditionalData(i, $event)">
             <!-- additional data expandable button -->
             <ng-container *ngIf="additionalData">
               <button 
@@ -40,7 +40,7 @@
 
             <!-- content -->
             <ng-container *ngFor="let key of tableContentKeys">
-              <span class="gs-table-row_text" *ngIf="row[key]" (click)="toggleAdditionalData(i)">
+              <span class="gs-table-row_text" *ngIf="row[key]">
                 {{ row[key] | translate }}
               </span>
             </ng-container>

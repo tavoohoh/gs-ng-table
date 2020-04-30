@@ -260,9 +260,9 @@ export class GsTablesComponent implements OnChanges {
       }
 
       if (this.tableRowActions && !this.tableRowActions.hidden) {
-        variables = variables + `--gs-repeat: ${additionaldata ? '35px' : ''} repeat(${this.tableHeader.length}, 1fr) 90px!important;`;
+        variables = variables + `--gs-repeat: ${additionaldata ? '30px' : ''} repeat(${this.tableHeader.length}, 1fr) 90px!important;`;
       } else {
-        variables = variables + `--gs-repeat: ${additionaldata ? '35px' : ''} repeat(${this.tableHeader.length}, 1fr)!important;`;
+        variables = variables + `--gs-repeat: ${additionaldata ? '30px' : ''} repeat(${this.tableHeader.length}, 1fr)!important;`;
       }
     }
 
@@ -398,8 +398,8 @@ export class GsTablesComponent implements OnChanges {
     );
   }
 
-  public toggleAdditionalData(selectedAdditionalData: number): void {
-    if (!this.additionalData) {
+  public toggleAdditionalData(selectedAdditionalData: number, $event?: { target: { tagName: string }}): void {
+    if (!this.additionalData || ($event && $event.target.tagName === 'BUTTON')) {
       return;
     }
 
