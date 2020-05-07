@@ -1,4 +1,5 @@
 import { GTypeRowEnum } from './gs-tables.enum';
+import { TemplateRef } from '@angular/core';
 /**
  * Location interface and its dependencies
  */
@@ -28,4 +29,15 @@ export interface GLocation {
 export interface GKeyType {
   key: string;
   type: GTypeRowEnum;
+}
+
+export interface GCustomTemplate {
+  value: string;
+  template: TemplateRef<any>;
+}
+
+export interface GAdditionalData {
+  label: string;
+  value: string | number | boolean | GCustomTemplate;
+  type?: GTypeRowEnum;
 }

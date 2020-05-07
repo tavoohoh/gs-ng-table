@@ -40,7 +40,15 @@
             <!-- content -->
             <ng-container *ngFor="let key of tableContentKeys">
               <span class="gs-table-row_text" *ngIf="row[key]">
-                {{ row[key] | translate }}
+                <!-- custom template reference -->
+                <ng-container *ngIf="row[key].template; else simpleValue">
+                  <ng-container *ngTemplateOutlet="row[key].template; context:row[key]"></ng-container>
+                </ng-container>
+
+                <!-- default value rendering -->
+                <ng-template #simpleValue>
+                  {{ row[key] | translate }}
+                </ng-template>
               </span>
             </ng-container>
 

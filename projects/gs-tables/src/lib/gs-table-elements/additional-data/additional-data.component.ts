@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { GTableAdditionalData } from '../../gs-tables.widgets';
+import { GAdditionalData } from '../../gs-tables.models';
 
 @Component({
   selector: 'gs-table-additional-data',
@@ -7,7 +7,7 @@ import { GTableAdditionalData } from '../../gs-tables.widgets';
   styleUrls: ['./additional-data.component.sass']
 })
 export class GsAdditionalDataComponent implements OnChanges {
-  @Input() public additionalData: Array<GTableAdditionalData>;
+  @Input() public additionalData: Array<GAdditionalData>;
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.additionalData.currentValue) {

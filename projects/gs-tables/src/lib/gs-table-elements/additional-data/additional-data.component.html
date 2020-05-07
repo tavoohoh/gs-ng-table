@@ -1,5 +1,15 @@
 <div class="additional-data">
   <div *ngFor="let data of additionalData; let i = index">
-    <b>{{ data.label | translate }}:</b> <span> {{ data.value | translate }}</span>
+    <b>{{ data.label | translate }}:</b>
+
+    <!-- custom template reference -->
+    <ng-container *ngIf="data.value['template']; else simpleValue">
+      <ng-container *ngTemplateOutlet="data.value['template']; context:data.value"></ng-container>
+    </ng-container>
+
+    <!-- default value rendering -->
+    <ng-template #simpleValue>
+      <span>{{ data.value | translate }}</span>
+    </ng-template>
   </div>
 </div>

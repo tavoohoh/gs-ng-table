@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, TemplateRef } from '@angular/core';
 import { GTable, GTableStyle } from 'projects/gs-tables/src/public-api';
 import { GCountryCode, GTypeRowEnum } from 'projects/gs-tables/src/lib/gs-tables.enum';
 
@@ -13,19 +13,21 @@ export class AppComponent implements OnInit {
   public currentPage = 1;
   public totalOfPages = 4;
 
+  @ViewChild('statusTemplate', { static: true }) public statusTemplate: any;
+
   ngOnInit() {
     this.tableData = {
       header: [
         'First Name',
-        'Last Name',
         'Email Address',
-        'Price'
+        'Price',
+        'status'
       ],
       keyNames: [
         'firstName',
-        'lastName',
         'email',
-        'price'
+        'price',
+        'status'
       ],
       keyTypes: [
         {
@@ -65,6 +67,10 @@ export class AppComponent implements OnInit {
           lastName: 'Qdmama asdmmm as mm asdasd mmasd',
           email: 'taddddddddddddddddddddddddddddddddddddddvo@mail.com',
           age: 2111111111111111117,
+          status: {
+            value: 'completed',
+            template: this.statusTemplate
+          },
           id: 'qasd1d',
           valid: 1,
           price: '234000',
@@ -81,6 +87,13 @@ export class AppComponent implements OnInit {
               label: 'Amount',
               value: '1002940',
               type: GTypeRowEnum.CURRENCY
+            },
+            {
+              label: 'status',
+              value: {
+                value: 'completed',
+                template: this.statusTemplate
+              },
             }
           ]
         },
@@ -89,6 +102,10 @@ export class AppComponent implements OnInit {
           lastName: 'Hola Hola Hola Hola Hola Hola Hola Hola Hola Hola ',
           email: 'ray@mail.com',
           age: 2123111198765443218000,
+          status: {
+            value: 'pending',
+            template: this.statusTemplate
+          },
           id: 'wasd1d',
           valid: 2,
           price: '234000',
@@ -113,6 +130,10 @@ export class AppComponent implements OnInit {
           lastName: 'Marvel',
           email: 'yuumaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaai@mail.com',
           age: 12,
+          status: {
+            value: 'completed',
+            template: this.statusTemplate
+          },
           id: 'easd1d',
           valid: 0,
           price: '234000'
@@ -122,6 +143,10 @@ export class AppComponent implements OnInit {
           lastName: 'Bracho',
           email: 'toto@mail.com',
           age: 32,
+          status: {
+            value: 'pending',
+            template: this.statusTemplate
+          },
           id: 'fasd1d',
           valid: 0,
           price: '234000',
@@ -146,6 +171,10 @@ export class AppComponent implements OnInit {
           lastName: 'Santamaria',
           email: 'tavo@mail.com',
           age: 27,
+          status: {
+            value: 'in-progress',
+            template: this.statusTemplate
+          },
           id: 'g1asd1d',
           valid: 1,
           price: '234000'
@@ -155,6 +184,10 @@ export class AppComponent implements OnInit {
           lastName: 'Mata',
           email: 'ray@mail.com',
           age: 26,
+          status: {
+            value: 'pending',
+            template: this.statusTemplate
+          },
           id: '1d2asd1d',
           valid: 0,
           price: '234000'
@@ -164,6 +197,10 @@ export class AppComponent implements OnInit {
           lastName: 'Marvel',
           email: 'yuumi@mail.com',
           age: 1,
+          status: {
+            value: 'pending',
+            template: this.statusTemplate
+          },
           id: 'd4gasd1d',
           valid: 1,
           price: '234000',
@@ -188,6 +225,10 @@ export class AppComponent implements OnInit {
           lastName: 'Bracho',
           email: 'toto@mail.com',
           age: 32,
+          status: {
+            value: 'completed',
+            template: this.statusTemplate
+          },
           id: 'f2fasd1d',
           valid: 2,
           price: '234000',

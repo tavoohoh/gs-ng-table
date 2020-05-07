@@ -11,11 +11,11 @@ import {
   OnChanges,
   SimpleChanges
 } from '@angular/core';
-import { GTable, GTableRowAction, GTableAction, GTableStyle, GStyles, GTableAdditionalData } from './gs-tables.widgets';
+import { GTable, GTableRowAction, GTableAction, GTableStyle, GStyles } from './gs-tables.widgets';
 import { GsTablesService } from './gs-tables.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { LOCATION } from './gs-tables.constants';
-import { GKeyType } from './gs-tables.models';
+import { GKeyType, GCustomTemplate } from './gs-tables.models';
 import { GTypeRowEnum } from './gs-tables.enum';
 
 // https://uxdesign.cc/design-better-data-tables-4ecc99d23356
@@ -73,6 +73,7 @@ export class GsTablesComponent implements OnChanges {
   public tableRowActions: GTableRowAction;
   public tableStyle: GTableStyle;
   public tablesKeyType: Array<GKeyType>;
+  public tableCustomTemplates: Array<GCustomTemplate>;
   private customStyles: GStyles;
 
   public noTableData: boolean;
@@ -153,7 +154,7 @@ export class GsTablesComponent implements OnChanges {
 
   private tableDataAdapter() {
     this.tableStyle = this.tableData.options.style || GTableStyle.TABLE;
-    this.tablesKeyType = this.tableData.keyTypes;
+    this.tablesKeyType = this.tableData.keyTypes || null;
 
     if (this.tablesKeyType) {
       this.formatData();
@@ -180,7 +181,7 @@ export class GsTablesComponent implements OnChanges {
       for (let i = 0; i < this.tableData.data.length; i++) {
         switch (type.type) {
           case GTypeRowEnum.CURRENCY:
-            this.tableData.data[i][type.key] = this.formatCurrency(this.tableData.data[i][type.key]);
+            this.tableData.data[i][type.key] = this.formatCurrency(this.tableData.data[i][type.key].toString());
             break;
           case GTypeRowEnum.PHONE:
           // TODO create format Phone
