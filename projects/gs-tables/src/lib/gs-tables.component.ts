@@ -156,8 +156,6 @@ export class GsTablesComponent implements OnChanges {
     this.tableStyle = this.tableData.options.style || GTableStyle.TABLE;
     this.tablesKeyType = this.tableData.keyTypes || null;
 
-    console.log(this.tableData.data);
-
     if (this.tablesKeyType) {
       this.formatData();
     }
