@@ -7,7 +7,7 @@
       <!-- header -->
       <div class="gs-table-header" [style.padding-right.px]="tableContentPadding" #tableHeaderElement>
        
-        <!-- additional data expandable placeholder -->
+        <!-- checkbox placeholder -->
         <span *ngIf="selectable">
           <gs-checkbox
             class="checkbox-aligned"
@@ -16,7 +16,7 @@
           </gs-checkbox>
         </span>
 
-        <!-- checkbox placeholder -->
+        <!-- additional data expandable placeholder -->
         <span *ngIf="additionalData"></span>
 
         <!-- header keys -->
