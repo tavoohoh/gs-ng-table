@@ -1,5 +1,5 @@
 import { GCountryCode } from './gs-tables.enum';
-import { GKeyType, GCustomTemplate, GAdditionalData } from './gs-tables.models';
+import { GKeyType, GCustomTemplate, GAdditionalData, GTableDataValue, GTableFooterAction } from './gs-tables.models';
 
 /**
  * A row action element
@@ -141,7 +141,7 @@ export interface GTable {
   /**
    * The table data as an array of objects
    */
-  data?: Array<{[key: string]: string | number | boolean | Array<GAdditionalData> | GCustomTemplate }>;
+  data?: Array<GTableDataValue>;
   /**
    * Table header values
    *
@@ -188,6 +188,14 @@ export interface GTable {
      * set text when table has no data, for default it's spanish
      */
     noContentText?: string;
+    /**
+     * If true will be possible to select rows using checkboxes
+     */
+    selectable?: boolean;
+    /**
+     * A list of custom actions
+     */
+    tableActions?: Array<GTableFooterAction>;
     /**
      * Adds an expandable container for additional data
      * Make sure to include an object with the additional data into your data array, it may look as follow

@@ -15,7 +15,7 @@ import { GTable, GTableRowAction, GTableAction, GTableStyle, GStyles } from './g
 import { GsTablesService } from './gs-tables.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { LOCATION } from './gs-tables.constants';
-import { GKeyType, GCustomTemplate } from './gs-tables.models';
+import { GKeyType, GCustomTemplate, GSelectableValue, GTableDataValue, GTableFooterAction } from './gs-tables.models';
 import { GTypeRowEnum } from './gs-tables.enum';
 
 // https://uxdesign.cc/design-better-data-tables-4ecc99d23356
@@ -61,14 +61,30 @@ export class GsTablesComponent implements OnChanges {
    * Event emitted when any of the pagination buttons are clicked
    */
   @Output() private navigateTo = new EventEmitter<number>();
+  /**
+   * Event emitted when a row is selected
+   */
+  @Output() private rowValueChanged = new EventEmitter<GSelectableValue>();
+  /**
+   * Event emitted when any value of the table is modified by this component
+   */
+  @Output() private tableDataChanged = new EventEmitter<Array<GTableDataValue>>();
+  /**
+   * Event emitted when a custom footer action is clicked
+   */
+  @Output() private footerActionClick = new EventEmitter<GTableFooterAction>();
+
   @ViewChild('tableContentElement', { static: false }) private tableContentElement: ElementRef;
   @ViewChild('tableHeaderElement', { static: false }) private tableHeaderElement: ElementRef;
 
   public tableHeader: Array<string>;
   public tableContentKeys: Array<string>;
-  public tableContent: Array<object>;
+  public tableContent: Array<GTableDataValue>;
   public additionalData: boolean;
+  public selectable: boolean;
+  public selectableAllSelected: boolean;
   public selectedAdditionalData: number;
+  public customFooterActions: Array<GTableFooterAction>;
   public tableContentPadding: number;
   public tableRowActions: GTableRowAction;
   public tableStyle: GTableStyle;
@@ -107,8 +123,18 @@ export class GsTablesComponent implements OnChanges {
         this.onInputDataError();
       }
 
-      if (this.tableData.options.hasAdditionalData) {
-        this.additionalData = true;
+      if (this.tableData.options) {
+        if (this.tableData.options.hasAdditionalData) {
+          this.additionalData = true;
+        }
+
+        if (this.tableData.options.selectable) {
+          this.selectable = true;
+        }
+
+        if (this.tableData.options.tableActions) {
+          this.customFooterActions = this.tableData.options.tableActions;
+        }
       }
     }
 
@@ -254,16 +280,20 @@ export class GsTablesComponent implements OnChanges {
 
     // Layout
     if (!this.noTableData && this.tableStyle === GTableStyle.TABLE && this.tableHeader.length) {
-      let additionaldata = false;
+      let extraColumns = '';
+
+      if (this.selectable) {
+        extraColumns = `${extraColumns} 30px`;
+      }
 
       if (this.additionalData) {
-        additionaldata = true;
+        extraColumns = `${extraColumns} 30px`;
       }
 
       if (this.tableRowActions && !this.tableRowActions.hidden) {
-        variables = variables + `--gs-repeat: ${additionaldata ? '30px' : ''} repeat(${this.tableHeader.length}, 1fr) 90px!important;`;
+        variables = variables + `--gs-repeat: ${extraColumns} repeat(${this.tableHeader.length}, 1fr) 90px!important;`;
       } else {
-        variables = variables + `--gs-repeat: ${additionaldata ? '30px' : ''} repeat(${this.tableHeader.length}, 1fr)!important;`;
+        variables = variables + `--gs-repeat: ${extraColumns} repeat(${this.tableHeader.length}, 1fr)!important;`;
       }
     }
 
@@ -399,11 +429,36 @@ export class GsTablesComponent implements OnChanges {
     );
   }
 
-  public toggleAdditionalData(selectedAdditionalData: number, $event?: { target: { id: string }}): void {
+  public toggleAdditionalData(selectedAdditionalData: number, $event?: { target: { id: string } }): void {
     if (!this.additionalData || ($event && $event.target.id === 'rowActionButton')) {
       return;
     }
 
     this.selectedAdditionalData = this.selectedAdditionalData === selectedAdditionalData ? null : selectedAdditionalData;
+  }
+
+  /**
+   * Selectable methods
+   */
+  public onRowValueChanged(newRowValue: GSelectableValue): void {
+    this.tableContent[newRowValue.index].selectable = newRowValue.value;
+    this.rowValueChanged.emit(newRowValue);
+    this.tableDataChanged.emit(this.tableContent);
+  }
+
+  public toggleSelectableSelection(newRowValue: GSelectableValue): void {
+    this.selectableAllSelected = newRowValue.value;
+    // tslint:disable-next-line
+    for (let i = 0; i < this.tableContent.length; i++) {
+      this.tableContent[i].selectable = this.selectableAllSelected;
+    }
+    this.tableDataChanged.emit(this.tableContent);
+  }
+
+  /**
+   * Footer actions
+   */
+  public onFooterActionClicked(action: GTableFooterAction): void {
+    this.footerActionClick.emit(action);
   }
 }

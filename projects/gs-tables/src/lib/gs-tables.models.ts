@@ -41,3 +41,18 @@ export interface GAdditionalData {
   value: string | number | boolean | GCustomTemplate;
   type?: GTypeRowEnum;
 }
+
+export interface GSelectableValue {
+  value: boolean;
+  index?: number;
+}
+
+export interface GTableDataValue {
+  [key: string]: string | number | boolean | GCustomTemplate | Array<GAdditionalData>;
+}
+
+export interface GTableFooterAction {
+  id: string;
+  label: string;
+  disabled?: boolean;
+}

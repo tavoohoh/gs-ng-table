@@ -39,31 +39,65 @@
     border-bottom: none
     display: grid
     gap: 0.5rem
-    grid-template-columns: auto repeat(4, 1rem) 1fr
+    grid-template-columns: auto 1fr
+
+    .gs-table-actions
+      display: grid
+      gap: 0.5rem
+      grid-template-columns: auto repeat(4, 1rem) 1fr
+
+      .gs-table-navigation_count,
+      .gs-table-navigation-btn,
+      .gs-table-action-btn
+        align-self: center
+
+      .gs-table-navigation_count
+        padding-right: 1rem
+
+      .gs-table-navigation-btn,
+      .gs-table-action-btn
+        outline: none
+        background: none
+        padding: 0
+        margin: 0
+        border: none
+        cursor: pointer
+
+      .gs-table-navigation-btn svg
+        width: 12px
+
+      .gs-table-action-btn svg
+        width: 20px
+      
+      .rotate180
+        transform: rotateY(180deg)
+
+    .gs-table-custom-actions
+      display: flex
+      flex-direction: row
+      margin-left: auto
+
+      .gs-table-custom-action-btn
+        @include transition()
+        align-self: center
+        margin: 0 0 0 0.5rem
+        padding: 0.5rem
+        font-size: 0.8rem
+        color: var(--gs-button-background, $gs-button-background)
+        background: none
+        border-radius: 0
+        border: 1px solid var(--gs-button-background, $gs-button-background)
+        cursor: pointer
+        line-height: 1
+
+        &:hover        
+          color: var(--gs-button-color, $gs-white-color)
+          background: var(--gs-button-background, $gs-button-background)
 
     span
       @include headerFooterFont()
 
-    .gs-table-navigation_count,
-    .gs-table-navigation-btn
-      align-self: center
-
-    .gs-table-navigation_count
-      padding-right: 1rem
-
-    .gs-table-navigation-btn
-      outline: none
-      background: none
-      padding: 0
-      margin: 0
-      border: none
-      cursor: pointer
-
-      svg
-        width: 12px
     
-    .rotate180
-      transform: rotateY(180deg)
 
   .gs-table-row
     .gs-table-row_text
@@ -153,3 +187,8 @@
 
 .cursor-pointer
   cursor: pointer
+
+.checkbox-aligned    
+  align-self: center
+  display: block
+  height: $gs-checkboxSize
