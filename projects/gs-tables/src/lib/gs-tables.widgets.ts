@@ -1,5 +1,5 @@
 import { GCountryCode } from './gs-tables.enum';
-import { GKeyType } from './gs-tables.models';
+import { GKeyType, GCustomTemplate, GAdditionalData } from './gs-tables.models';
 
 /**
  * A row action element
@@ -27,15 +27,6 @@ export interface GTableRowAction {
     model: string;
     hasValue: any;
   };
-}
-
-/**
- * Additional data
- */
-export interface GTableAdditionalData {
-  label?: Array<object>;
-  value?: Array<string>;
-  type?: Array<GKeyType>;
 }
 
 /**
@@ -150,7 +141,7 @@ export interface GTable {
   /**
    * The table data as an array of objects
    */
-  data?: Array<object>;
+  data?: Array<{[key: string]: string | number | boolean | Array<GAdditionalData> | GCustomTemplate }>;
   /**
    * Table header values
    *

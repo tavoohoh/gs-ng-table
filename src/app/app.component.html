@@ -7,3 +7,9 @@
     (rowActionEvent)="hdlRowActionEvent($event)">
   </gs-table>
 </div>
+
+<ng-template #statusTemplate let-value="value">
+  <div [class]="'status ' + value">
+    {{ value }}
+  </div>
+</ng-template>
