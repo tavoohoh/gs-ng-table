@@ -4,7 +4,10 @@
     [currentPage]="currentPage"
     [totalOfPages]="totalOfPages"
     (navigateTo)="doNavigateTo($event)"
-    (rowActionEvent)="hdlRowActionEvent($event)">
+    (tableDataChanged)="checkEvent($event)"
+    (rowValueChanged)="checkEvent($event)"
+    (footerActionClick)="checkEvent($event)"
+    (rowActionEvent)="checkEvent($event)">
   </gs-table>
 </div>
 

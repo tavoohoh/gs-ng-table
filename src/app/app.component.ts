@@ -39,6 +39,18 @@ export class AppComponent implements OnInit {
         country: GCountryCode.CO,
         style: GTableStyle.TABLE,
         hasAdditionalData: true,
+        selectable: true,
+        tableActions: [
+          {
+            id: 'downloadAll',
+            label: 'Download all',
+            disabled: true
+          },
+          {
+            id: 'Delete',
+            label: 'Delete'
+          }
+        ],
         rowActions: {
           text: 'Actions',
           actions: [
@@ -74,6 +86,7 @@ export class AppComponent implements OnInit {
           id: 'qasd1d',
           valid: 1,
           price: '234000',
+          selectable: true,
           additionalData: [
             {
               label: 'TransactionId',
@@ -109,6 +122,7 @@ export class AppComponent implements OnInit {
           id: 'wasd1d',
           valid: 2,
           price: '234000',
+          selectable: false,
           additionalData: [
             {
               label: 'TransactionId',
@@ -136,7 +150,8 @@ export class AppComponent implements OnInit {
           },
           id: 'easd1d',
           valid: 0,
-          price: '234000'
+          price: '234000',
+          selectable: false,
         },
         {
           firstName: 'Nestor',
@@ -150,6 +165,7 @@ export class AppComponent implements OnInit {
           id: 'fasd1d',
           valid: 0,
           price: '234000',
+          selectable: false,
           additionalData: [
             {
               label: 'TransactionId',
@@ -177,7 +193,8 @@ export class AppComponent implements OnInit {
           },
           id: 'g1asd1d',
           valid: 1,
-          price: '234000'
+          price: '234000',
+          selectable: true,
         },
         {
           firstName: 'Rachel',
@@ -204,6 +221,7 @@ export class AppComponent implements OnInit {
           id: 'd4gasd1d',
           valid: 1,
           price: '234000',
+          selectable: false,
           additionalData: [
             {
               label: 'TransactionId',
@@ -232,6 +250,7 @@ export class AppComponent implements OnInit {
           id: 'f2fasd1d',
           valid: 2,
           price: '234000',
+          selectable: true,
           additionalData: [
             {
               label: 'TransactionId',
@@ -250,10 +269,6 @@ export class AppComponent implements OnInit {
         },
       ]
     };
-  }
-
-  public hdlRowActionEvent(event): void {
-    console.log('Event', event);
   }
 
   public doNavigate(nav: string): void {
@@ -276,5 +291,9 @@ export class AppComponent implements OnInit {
       [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
+  }
+
+  public checkEvent(event: any) {
+    console.log('event:', event);
   }
 }

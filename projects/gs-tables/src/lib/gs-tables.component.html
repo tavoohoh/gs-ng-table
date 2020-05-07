@@ -6,6 +6,16 @@
     <div class="gs-table" *ngIf="tableStyle === tableStyleType.TABLE">
       <!-- header -->
       <div class="gs-table-header" [style.padding-right.px]="tableContentPadding" #tableHeaderElement>
+       
+        <!-- checkbox placeholder -->
+        <span *ngIf="selectable">
+          <gs-checkbox
+            class="checkbox-aligned"
+            (valueChanged)="toggleSelectableSelection($event)"
+            [value]="selectableAllSelected">
+          </gs-checkbox>
+        </span>
+
         <!-- additional data expandable placeholder -->
         <span *ngIf="additionalData"></span>
 
@@ -25,14 +35,24 @@
         <ng-container *ngFor="let row of tableContent; let i = index">
 
           <div class="gs-table-row" [class.selected-row]="selectedAdditionalData === i" [class.cursor-pointer]="additionalData" (click)="toggleAdditionalData(i, $event)">
+            <!-- checkboxes -->
+            <ng-container *ngIf="selectable">
+              <gs-checkbox
+                class="checkbox-aligned"
+                (valueChanged)="onRowValueChanged($event)"
+                [value]="row['selectable']"
+                [rowIndex]="i">
+              </gs-checkbox>
+            </ng-container>
+            
             <!-- additional data expandable button -->
             <ng-container *ngIf="additionalData">
               <button 
                 *ngIf="row['additionalData']"
                 class="additional-data-toggle">
-                  <svg [class.addiitonal-data-selected]="i === selectedAdditionalData"  xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" >
-                    <path d="M13 8h-8v-1h8v1zm0 2h-8v-1h8v1zm-3 2h-5v-1h5v1zm11.172 12l-7.387-7.387c-1.388.874-3.024 1.387-4.785 1.387-4.971 0-9-4.029-9-9s4.029-9 9-9 9 4.029 9 9c0 1.761-.514 3.398-1.387 4.785l7.387 7.387-2.828 2.828zm-12.172-8c3.859 0 7-3.14 7-7s-3.141-7-7-7-7 3.14-7 7 3.141 7 7 7z"/>
-                  </svg>
+                <svg [class.addiitonal-data-selected]="i === selectedAdditionalData"  xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" >
+                  <path d="M13 8h-8v-1h8v1zm0 2h-8v-1h8v1zm-3 2h-5v-1h5v1zm11.172 12l-7.387-7.387c-1.388.874-3.024 1.387-4.785 1.387-4.971 0-9-4.029-9-9s4.029-9 9-9 9 4.029 9 9c0 1.761-.514 3.398-1.387 4.785l7.387 7.387-2.828 2.828zm-12.172-8c3.859 0 7-3.14 7-7s-3.141-7-7-7-7 3.14-7 7 3.141 7 7 7z"/>
+                </svg>
               </button>
               <span *ngIf="!row['additionalData']"></span>
             </ng-container>
@@ -41,8 +61,8 @@
             <ng-container *ngFor="let key of tableContentKeys">
               <span class="gs-table-row_text" *ngIf="row[key]">
                 <!-- custom template reference -->
-                <ng-container *ngIf="row[key].template; else simpleValue">
-                  <ng-container *ngTemplateOutlet="row[key].template; context:row[key]"></ng-container>
+                <ng-container *ngIf="row[key]['template']; else simpleValue">
+                  <ng-container *ngTemplateOutlet="row[key]['template']; context:row[key]"></ng-container>
                 </ng-container>
 
                 <!-- default value rendering -->
@@ -63,8 +83,7 @@
           </div>
 
           <div class="gs-table-row additional-data-row selected-row" *ngIf="additionalData && row['additionalData'] && selectedAdditionalData === i">
-            <gs-table-additional-data
-             [additionalData]="row['additionalData']">
+            <gs-table-additional-data [additionalData]="row['additionalData']">
             </gs-table-additional-data>
           </div>
         </ng-container>
@@ -100,13 +119,11 @@
 
 <ng-template #footer>
   <div class="gs-table-footer" *ngIf="currentPage && totalOfPages">
-
+    <div class="gs-table-actions">
       <!-- element count -->
       <span class="gs-table-navigation_count">
         {{ currentPage }} - {{ totalOfPages }}
       </span>
-
-      <!-- navigation controlls -->
 
       <!-- navigate to first page -->
       <button
@@ -151,7 +168,18 @@
           <path d="M0 3.795l2.995-2.98 11.132 11.185-11.132 11.186-2.995-2.981 8.167-8.205-8.167-8.205zm18.04 8.205l-8.167 8.205 2.995 2.98 11.132-11.185-11.132-11.186-2.995 2.98 8.167 8.206z"/>
         </svg>
       </button>
+    </div>
 
+    <div class="gs-table-custom-actions" *ngIf="customFooterActions">
+      <button 
+        *ngFor="let action of customFooterActions"
+        class="gs-table-custom-action-btn"
+        [class.disabled]="action.disabled"
+        type="button"
+        (click)="onFooterActionClicked(action)">
+        {{ action.label | translate }}
+      </button>
+    </div>
   </div>
 </ng-template>
 
