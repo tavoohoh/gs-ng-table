@@ -429,8 +429,11 @@ export class GsTablesComponent implements OnChanges {
     );
   }
 
-  public toggleAdditionalData(selectedAdditionalData: number, $event?: { target: { id: string } }): void {
-    if (!this.additionalData || ($event && $event.target.id === 'rowActionButton')) {
+  public toggleAdditionalData(selectedAdditionalData: number, $event?: { target: { id: string, nodeName: string } }): void {
+    if (!this.additionalData || ($event && (
+      $event.target.id === 'rowActionButton' ||
+      $event.target.id === 'gsbtnany'
+    ))) {
       return;
     }
 
