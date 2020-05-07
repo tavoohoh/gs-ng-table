@@ -441,7 +441,7 @@ export class GsTablesComponent implements OnChanges {
    * Selectable methods
    */
   public onRowValueChanged(newRowValue: GSelectableValue): void {
-    this.tableContent[newRowValue.index].selectable = newRowValue.value;
+    this.tableContent[newRowValue.index || 0].selectable = newRowValue.value;
     this.rowValueChanged.emit(newRowValue);
     this.tableDataChanged.emit(this.tableContent);
   }

@@ -1,13 +1,13 @@
 @import ../../gs-tables.styles
 
 /* Do not modify the following variables! */
-$size: $gs-checkboxSize
+$size: $gs-checkboxSize - 1px
 $checkmarkWidth: $gs-checkboxSize / 5
 $checkmarkHeight: $gs-checkboxSize / 2
 $checkmarkBorder: $gs-checkboxSize / 8
 
 /* The container */
-.checkbox
+.gs-checkbox
   @include transition()
   display: block
   position: relative
@@ -29,7 +29,7 @@ $checkmarkBorder: $gs-checkboxSize / 8
     padding: 0
     margin: 0
 
-  .checkmark
+  .gs-checkmark
     display: grid
     position: absolute
     top: 0
@@ -55,11 +55,11 @@ $checkmarkBorder: $gs-checkboxSize / 8
       -ms-transform: rotate(45deg)
       transform: rotate(45deg)
 
-.checkbox:hover input ~ .checkmark
+.gs-checkbox:hover input ~ .gs-checkmark
   opacity: $opacity
 
-.checkbox input:checked ~ .checkmark
+.gs-checkbox input:checked ~ .gs-checkmark
   background-color: var(--gs-button-background, $gs-button-background)
 
-.checkbox input:checked ~ .checkmark:after
+.gs-checkbox input:checked ~ .gs-checkmark:after
   display: block
