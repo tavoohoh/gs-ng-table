@@ -1,6 +1,6 @@
 <div class="additional-data">
   <div *ngFor="let data of additionalData; let i = index">
-    <b>{{ data.label | translate }}:</b>
+    <b>{{ data.label | translate }}: </b>
 
     <!-- custom template reference -->
     <ng-container *ngIf="data.value['template']; else simpleValue">

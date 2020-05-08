@@ -46,7 +46,7 @@ export class GsTablesComponent implements OnChanges {
   /**
    * Event emitted when an action is clicked
    */
-  @Output() private rowActionEvent = new EventEmitter<GTableAction>();
+  @Output() private rowActionClick = new EventEmitter<GTableAction>();
   /**
    * Event emitted when `navigateNext` button is clicked
    * @deprecated use `navigateTo` event instead
@@ -72,7 +72,7 @@ export class GsTablesComponent implements OnChanges {
   /**
    * Event emitted when a custom footer action is clicked
    */
-  @Output() private footerActionClick = new EventEmitter<GTableFooterAction>();
+  @Output() private tableActionClick = new EventEmitter<GTableFooterAction>();
 
   @ViewChild('tableContentElement', { static: false }) private tableContentElement: ElementRef;
   @ViewChild('tableHeaderElement', { static: false }) private tableHeaderElement: ElementRef;
@@ -378,7 +378,7 @@ export class GsTablesComponent implements OnChanges {
   }
 
   public hdlRowAction(action: GTableAction): void {
-    this.rowActionEvent.emit(action);
+    this.rowActionClick.emit(action);
     this.selectedAdditionalData = null;
   }
 
@@ -462,6 +462,6 @@ export class GsTablesComponent implements OnChanges {
    * Footer actions
    */
   public onFooterActionClicked(action: GTableFooterAction): void {
-    this.footerActionClick.emit(action);
+    this.tableActionClick.emit(action);
   }
 }
