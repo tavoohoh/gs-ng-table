@@ -1,0 +1,203 @@
+import { GCountryCode } from './gs-tables.enum';
+import { GKeyType, GTableDataValue, GTableFooterAction } from './gs-tables.models';
+/**
+ * A row action element
+ * For example: 'edit', 'delete', etc...
+ */
+export interface GTableAction {
+    text: string;
+    hidden?: boolean;
+    displayIf?: {
+        model: string;
+        hasValue: any;
+    };
+    id?: string;
+    row?: {};
+}
+/**
+ * An event triggered when clicking an action element
+ */
+export interface GTableRowAction {
+    text: string;
+    actions: Array<GTableAction>;
+    hidden?: boolean;
+    displayIf?: {
+        model: string;
+        hasValue: any;
+    };
+}
+/**
+ * Input/button styles
+ */
+interface GInputStyle {
+    padding?: string;
+    color?: string;
+    background?: string;
+    borderSize?: string;
+    borderStyle?: string;
+    borderColor?: string;
+    borderRadius?: string;
+    borderTop?: string;
+    borderRight?: string;
+    borderBottom?: string;
+    borderLeft?: string;
+}
+/**
+ * Library styles
+ *
+ * @description
+ * Send style parameters to the library
+ *
+ */
+export interface GStyles {
+    color?: {
+        /**
+         * Font color
+         * default: "inherit"
+         */
+        font?: string;
+        /**
+         * Primary color, used in important UI elements background and color
+         * default: "#4588fd"
+         */
+        primary?: string;
+        /**
+         * Secondary color, used in some UI elements background and color
+         * default: "#7a9e9f"
+         */
+        secondary?: string;
+        /**
+         * Neutral color, used in some UI elements background and color
+         * default: "#4f6367"
+         */
+        neutral?: string;
+        /**
+         * Border color
+         * default: "#eeeeee"
+         */
+        border?: string;
+        /**
+         * White color, all white colors used in UI elements
+         * default: "#ffffff"
+         */
+        white?: string;
+    };
+    ui?: {
+        /**
+         * Font size, all fonts size
+         * default: ".9rem"
+         */
+        fontSize?: string;
+        /**
+         * Inner padding
+         */
+        padding?: string;
+        /**
+         * Input and button style
+         * Go to `GInputStyle` for detail
+         */
+        primaryButton?: GInputStyle;
+    };
+}
+/**
+ * Table design
+ */
+export declare enum GTableStyle {
+    /**
+     * Display the table with all its columns, a header. Actions are optional.
+     */
+    TABLE = "TABLE",
+    /**
+     * Disply only the first and second column, no header. Actions are optional.
+     */
+    SINGLE = "SINGLE"
+}
+/**
+ * Table configuration
+ */
+export interface GTable {
+    /**
+     * The table data as an array of objects
+     */
+    data?: Array<GTableDataValue>;
+    /**
+     * Table header values
+     *
+     * Optional. If not defined the header will use `GTable.data` key names
+     */
+    header?: Array<string>;
+    /**
+     * Key names of the data values
+     *
+     * Optional. If not defined the table will iterate over the keys of its data.
+     */
+    keyNames?: Array<string>;
+    /**
+     * Key type of the data values
+     */
+    keyTypes?: Array<GKeyType>;
+    /**
+     * Change the table design or add functionalities
+     */
+    options?: {
+        /**
+         * Set default country using `GFieldCountryCode` enum form gs-field
+         */
+        country?: GCountryCode;
+        /**
+         * Set the table design
+         *
+         * By Default: `GTableStyle.TABLE`
+         */
+        style?: GTableStyle;
+        /**
+         * A dropdown button with actions to trigger events
+         */
+        rowActions?: GTableRowAction;
+        /**
+         * The page currently being displayed
+         */
+        currentPage?: number;
+        /**
+         * The total of available pages
+         */
+        totalOfPages?: number;
+        /**
+         * set text when table has no data, for default it's spanish
+         */
+        noContentText?: string;
+        /**
+         * If true will be possible to select rows using checkboxes
+         */
+        selectable?: boolean;
+        /**
+         * A list of custom actions
+         */
+        tableActions?: Array<GTableFooterAction>;
+        /**
+         * Adds an expandable container for additional data
+         * Make sure to include an object with the additional data into your data array, it may look as follow
+         *
+         * data: [
+         *   {...}
+         *   {
+         *     [...]
+         *     [
+         *       ...
+         *        additionalData: [
+         *          {
+         *            label: string,
+         *            value: string
+         *          }
+         *        ]
+         *       ...
+         *     ]
+         *     [...]
+         *   }
+         *   {...}
+         * ]
+         */
+        hasAdditionalData?: boolean;
+    };
+}
+export {};
