@@ -1,6 +1,6 @@
 {
-  "name": "gs-tables-core",
-  "version": "1.4.4",
+  "name": "@gs/ng-tables",
+  "version": "1.4.5",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -9,13 +9,11 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "lib:build": "ng-packagr -p projects/gs-tables/ng-package.json",
-    "lib:init-repo": "cd ./dist/gs-tables/ && git init && git remote add origin git@bitbucket.org:rappinc/rpp-ngtables-core.git",
+    "lib:init-repo": "cd ./dist/gs-tables/ && git init && git remote add origin git@github.com:tavoohoh/gs-ng-table.git",
     "lib:checkout": "cd ./dist/gs-tables/ && git checkout -b compiled",
-    "lib:commit": "cd ./dist/gs-tables/ && git add . && git commit -m '1.4.4'",
+    "lib:commit": "cd ./dist/gs-tables/ && git add . && git commit -m '1.4.5'",
     "lib:push": "cd ./dist/gs-tables/ && git push -f --set-upstream origin compiled",
-    "lib:publish": "npm run lib:build && npm run lib:init-repo && npm run lib:checkout && npm run lib:commit && npm run lib:push",
-    "nexus:login": "npm login --registry http://repo.ops.rappi.com/repository/npm-hosted/",
-    "nexus:publish": "npm run lib:build && cd ./dist/gs-tables && npm publish --registry http://repo.ops.rappi.com/repository/npm-hosted/"
+    "lib:publish": "npm run lib:build && npm run lib:init-repo && npm run lib:checkout && npm run lib:commit && npm run lib:push"
   },
   "private": true,
   "dependencies": {
@@ -29,7 +27,7 @@
     "@angular/router": "~8.2.14",
     "@ngx-translate/core": "^12.1.1",
     "@ngx-translate/http-loader": "^4.0.0",
-    "gs-tables": "git+ssh://git@bitbucket.org/rappinc/rpp-ngtables-core.git#compiled",
+    "@gs/ng-tables": "file:dist/gs-tables",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
