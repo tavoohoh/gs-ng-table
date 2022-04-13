@@ -14,12 +14,12 @@ Simple angular 8 table library.
 
 ## Installation
 - [set up your SSH key](https://confluence.atlassian.com/bitbucket/set-up-an-ssh-key-728138079.html#SetupanSSHkey-ssh1)
-so `npm` can clone the `rpp-ngforms-lib` repo.
+so `npm` can clone the `gs-ngforms-lib` repo.
 If you already have your SSH key configured for Bitbucket go to the next step.
 
 - Install the library via NPM
 ```sh
-npm install git+ssh://git@bitbucket.org:rappinc/rpp-ngtables-core.git#compiled --save
+npm install git+ssh://git@bitbucket.org:rappinc/gs-ngtables-core.git#compiled --save
 ```
 
 ## Getting Started
